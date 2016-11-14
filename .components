@@ -1,0 +1,9 @@
+---
+:orm: none
+:test: none
+:mock: none
+:script: none
+:renderer: none
+:stylesheet: none
+:namespace: MongoCollectionExporter
+:migration_format: number

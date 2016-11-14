@@ -1,0 +1,42 @@
+version: 1
+
+mongo:
+  # Only `sharded` is currently supported
+  mode: sharded
+
+  # List of mongos instanes to connect
+  mongos:
+    - 127.0.0.1:27170
+    - 127.0.0.1:27171
+    - 127.0.0.1:27172
+
+  # Shard topology
+  shards:
+    - 127.0.0.1:27173
+    - 127.0.0.1:27174
+    - 127.0.0.1:27175
+    - 127.0.0.1:27176
+    - 127.0.0.1:27177
+    - 127.0.0.1:27178
+    - 127.0.0.1:27179
+    - 127.0.0.1:27180
+    - 127.0.0.1:27181
+
+  # List of config servers
+  configs:
+    - 127.0.0.1:27182
+    - 127.0.0.1:27183
+    - 127.0.0.1:27184
+
+# Namespaces to export.
+#
+# For example, to export metrics only from one collection `foo` from database
+# `bar` specify `bar.foo`. To export all collections from `bar` just specify
+# `bar.*`.
+#
+# If no namespace given, all discovered namespaces will be exported.
+# namespaces:
+#  - foo.*
+
+# Set to true if you want to export index metrics as well.
+include_index: true
