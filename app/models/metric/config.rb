@@ -288,7 +288,7 @@ class Metric
           counter 'cursor search calls',      {type: 'search'}, as: 'calls'
           counter 'cursor search near calls', {type: 'search_near'}, as: 'calls'
           counter 'cursor update calls',      {type: 'update'}, as: 'calls'
-          counter 'truncate calls',           as: 'truncate_calls'
+          counter 'truncate calls',           {type: 'truncate'}, as: 'calls'
         end
 
         # TODO: Investigate need of this metrics?

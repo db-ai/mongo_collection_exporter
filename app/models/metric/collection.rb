@@ -358,6 +358,33 @@ class Metric
    #               'written slots coalesced',
    #               'yields waiting for previous log file close'
    #      end
+        inside 'cursor' do
+          counter 'cursor-insert key and value bytes inserted',
+                  as: 'insert_key_value_bytes'
+          counter 'cursor-remove key bytes removed',
+                  as: 'remove_key_bytes'
+          counter 'cursor-update value bytes updated',
+                  as: 'update_value_bytes'
+
+          counter 'restarted searches',
+                   as: 'restarted_searches'
+
+          # Not sure about that one
+          counter 'bulk-loaded cursor-insert calls', {type: 'bulk_load_insert'},
+                   as: 'calls'
+
+          counter 'create calls',      {type: 'create'}, as: 'calls'
+          counter 'insert calls',      {type: 'insert'}, as: 'calls'
+          counter 'next calls',        {type: 'next'}, as: 'calls'
+          counter 'prev calls',        {type: 'prev'}, as: 'calls'
+          counter 'remove calls',      {type: 'remove'}, as: 'calls'
+          counter 'reset calls',       {type: 'reset'}, as: 'calls'
+          counter 'search calls',      {type: 'search'}, as: 'calls'
+          counter 'search near calls', {type: 'search_near'}, as: 'calls'
+          counter 'truncate calls',    {type: 'truncate'}, as: 'calls'
+          counter 'update calls',      {type: 'update'}, as: 'calls'
+        end
+
       end
 
       gauge 'ok', as: 'metrics_is_ok'
