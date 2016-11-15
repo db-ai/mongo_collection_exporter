@@ -1,7 +1,7 @@
 class Server
   class Config < Server
     def metrics
-      Metric::Config.new(raw_metrics, labels)
+      Metric::Mongod.new(raw_metrics, labels)
     end
 
     def raw_metrics

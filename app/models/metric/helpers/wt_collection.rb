@@ -7,7 +7,7 @@ class WiredTigerCollectionHelper < DSL::Helper
       gauge 'formatVersion', as: 'format_version'
     end
 
-    inside 'LSM' do
+    inside 'LSM', as: 'lsm' do
       counter 'bloom filter false positives',
               as: "bloom_filer_false_positives"
       counter 'bloom filter hits',
@@ -41,7 +41,7 @@ class WiredTigerCollectionHelper < DSL::Helper
               as: 'filter_total_size_bytes'
     end
 
-    inside 'block-manager' do
+    inside 'block-manager', as: 'block_manager' do
       ignore 'file magic number',
              'file major version number',
              'minor version number'
