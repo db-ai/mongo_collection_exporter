@@ -386,6 +386,24 @@ class Metric
                  as: 'file_size_bytes'
         end
 
+        inside 'compression' do
+          counter 'compressed pages read',
+                  as: 'read_pages'
+          counter 'compressed pages written',
+                  as: 'written_pages'
+          counter 'page written failed to compress',
+                  as: 'failed_to_compress_written_pages'
+          counter 'page written was too small to compress',
+                  as: 'too_small_to_compress_written_pages'
+
+          counter 'raw compression call failed, additional data available',
+                  as: 'raw_failed_with_data_calls'
+          counter 'raw compression call failed, no additional data available',
+                  as: 'raw_failed_without_data_calls'
+          counter 'raw compression call succeeded',
+                  as: 'raw_success_calls'
+        end
+
         inside 'cursor' do
           counter 'cursor-insert key and value bytes inserted',
                   as: 'insert_key_value_bytes'
