@@ -1,9 +1,5 @@
 <h1>Server <%= @server.address %></h1>
 
-<% if @server.respond_to? :databases %>
-  Databases: <%= @server.namespaces %>
-<% end %>
-
 <hr>
 
 <table>
