@@ -126,6 +126,17 @@ class Metric
           counter 'update calls',      {type: 'update'}, as: 'calls'
         end
 
+        inside 'session' do
+          counter 'object compaction',
+                  as: 'object_compaction'
+          counter 'open cursor count',
+                  as: 'open_cursor_count'
+        end
+
+        inside 'transaction' do
+          counter 'update conflicts',
+                  as: 'update_conflicts'
+        end
       end
 
       gauge 'ok', as: 'metrics_is_ok'
