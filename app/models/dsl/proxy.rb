@@ -110,6 +110,13 @@ class DSL
       end
     end
 
+    # Helpers
+
+    def use(mod)
+      nested_rules = mod.proxy
+      instance_eval(&nested_rules)
+    end
+
     # Utility methods
     def keys
       context.keys
