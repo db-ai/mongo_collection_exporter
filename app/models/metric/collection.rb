@@ -138,19 +138,33 @@ class Metric
         end
 
         inside 'cache' do
-          ignore 'checkpoint blocked page eviction',
-                 'data source pages selected for eviction unable to be evicted',
-                 'hazard pointer blocked page eviction',
-                 'in-memory page passed criteria to be split',
-                 'in-memory page splits',
-                 'internal pages split during eviction',
-                 'leaf pages split during eviction',
-                 'overflow pages read into cache',
+          ignore 'overflow pages read into cache',
                  'overflow values cached in memory',
                  'page split during eviction deepened the tree',
                  'page written requiring lookaside records',
                  'pages read into cache requiring lookaside entries',
                  'pages written requiring in-memory restoration'
+
+          counter 'in-memory page passed criteria to be split',
+                  as: 'can_be_split_inmem_pages'
+
+          counter 'in-memory page splits',
+                  as: 'split_inmem_pages'
+
+          counter 'data source pages selected for eviction unable to be evicted',
+                  as: 'selected_but_cant_be_evicted_pages'
+
+          counter 'checkpoint blocked page eviction',
+                  {cause: 'checkpoint'}, as: 'page_eviction_blocked'
+
+          counter 'hazard pointer blocked page eviction',
+                  {cause: 'hazard_ponter'}, as: 'page_eviction_blocked'
+
+          counter 'internal pages split during eviction', {type: 'internal'},
+                          as: 'split_during_eviction_pages'
+
+          counter 'leaf pages split during eviction', {type: 'leaf'},
+                          as: 'split_during_eviction_pages'
 
           gauge 'bytes currently in the cache',
                  as: 'used_bytes'
