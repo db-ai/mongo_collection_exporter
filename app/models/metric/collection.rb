@@ -81,6 +81,105 @@ class Metric
                  as: 'file_size_bytes'
         end
 
+        inside 'btree' do
+          counter 'btree checkpoint generation',
+                  as: 'checkpoint_gen'
+
+          counter 'column-store fixed-size leaf pages', {type: 'fixed_leaf'},
+                  as: 'column_store_pages'
+
+          counter 'column-store internal pages', {type: 'internal'},
+                  as: 'column_store_pages'
+
+          counter 'column-store variable-size leaf pages', {type: 'var_leaf'},
+                  as: 'column_store_pages'
+
+          counter 'column-store variable-size RLE encoded values',
+                  {type: 'var_rle'}, as: 'column_store_values'
+
+          counter 'column-store variable-size deleted values',
+                  {type: 'var_deleted'}, as: 'column_store_values'
+
+          gauge 'fixed-record size',
+                as: 'fixed_record_size'
+
+          gauge 'maximum internal page key size',
+                as: 'max_internal_page_key_size'
+
+          gauge 'maximum internal page size',
+                as: 'max_interal_page_size'
+
+          gauge 'maximum leaf page key size',
+                as: 'max_leaf_page_key_size'
+
+          gauge 'maximum leaf page size',
+                as: 'max_leaf_page_size'
+
+          gauge 'maximum leaf page value size',
+                as: 'max_leaf_page_value_size'
+
+          gauge 'maximum tree depth',
+                as: 'max_tree_depth'
+
+          gauge 'number of key/value pairs',
+                as: 'key_value_pairs'
+
+          gauge 'overflow pages',
+                as: 'overflow_pages'
+
+          gauge 'pages rewritten by compaction',
+                as: 'rewritten_by_compaction_pages'
+
+          gauge 'row-store internal pages', {type: 'internal'},
+                as: 'row_store_pages'
+
+          gauge 'row-store leaf pages', {type: 'leaf'},
+                as: 'row_store_pages'
+        end
+
+        inside 'cache' do
+          ignore 'checkpoint blocked page eviction',
+                 'data source pages selected for eviction unable to be evicted',
+                 'hazard pointer blocked page eviction',
+                 'in-memory page passed criteria to be split',
+                 'in-memory page splits',
+                 'internal pages split during eviction',
+                 'leaf pages split during eviction',
+                 'overflow pages read into cache',
+                 'overflow values cached in memory',
+                 'page split during eviction deepened the tree',
+                 'page written requiring lookaside records',
+                 'pages read into cache requiring lookaside entries',
+                 'pages written requiring in-memory restoration'
+
+          gauge 'bytes currently in the cache',
+                 as: 'used_bytes'
+
+          counter 'bytes read into cache',
+                  as: 'read_into_bytes'
+
+          counter 'bytes written from cache',
+                  as: 'written_from_bytes'
+
+          counter 'pages read into cache',
+                   as: 'read_into_pages'
+
+          counter 'pages requested from the cache',
+                  as: 'read_from_pages'
+
+          counter 'pages written from cache',
+                  as: 'written_from_pages'
+
+          counter 'unmodified pages evicted', {type: 'unmodified'},
+                  as: 'evicted_pages'
+
+          counter 'modified pages evicted', {type: 'modified'},
+                  as: 'evicted_pages'
+
+          counter 'internal pages evicted', {type: 'internal'},
+                  as: 'evicted_pages'
+        end
+
         inside 'compression' do
           counter 'compressed pages read',
                   as: 'read_pages'
@@ -110,7 +209,7 @@ class Metric
           counter 'restarted searches',
                    as: 'restarted_searches'
 
-          # Not sure about that one
+          # Not sure that this is same event as 'insert calls'
           counter 'bulk-loaded cursor-insert calls', {type: 'bulk_load_insert'},
                    as: 'calls'
 
