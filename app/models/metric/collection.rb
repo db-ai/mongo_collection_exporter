@@ -126,6 +126,29 @@ class Metric
           counter 'update calls',      {type: 'update'}, as: 'calls'
         end
 
+        inside 'reconciliation' do
+          ignore 'dictionary matches',
+                 'fast-path pages deleted',
+                 'internal page key bytes discarded using suffix compression',
+                 'internal page multi-block writes',
+                 'internal-page overflow keys',
+                 'leaf page key bytes discarded using prefix compression',
+                 'leaf page multi-block writes',
+                 'leaf-page overflow keys',
+                 'maximum blocks required for a page',
+                 'overflow values written',
+                 'page checksum matches'
+
+          counter 'page reconciliation calls',
+                  as: 'page_calls'
+
+          counter 'page reconciliation calls for eviction',
+                  as: 'page_eviction_calls'
+
+          counter 'pages deleted',
+                  as: 'page_delete_calls'
+        end
+
         inside 'session' do
           counter 'object compaction',
                   as: 'object_compaction'
