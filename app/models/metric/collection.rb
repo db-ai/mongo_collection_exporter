@@ -359,6 +359,33 @@ class Metric
    #               'written slots coalesced',
    #               'yields waiting for previous log file close'
    #      end
+        inside 'block-manager' do
+          ignore 'file magic number',
+                 'file major version number',
+                 'minor version number'
+
+          counter 'allocations requiring file extension',
+                  as: 'allocation_with_extension'
+
+          counter 'blocks allocated',
+                  as: 'allocated_blocks'
+
+          counter 'blocks freed',
+                  as: 'freed_blocks'
+
+          gauge 'checkpoint size',
+                as: 'checkpoint_size'
+
+          gauge 'file allocation unit size',
+                as: 'file_allocation_unit_size_bytes'
+
+          gauge 'file bytes available for reuse',
+                as: 'file_reusable_bytes'
+
+          gauge 'file size in bytes',
+                 as: 'file_size_bytes'
+        end
+
         inside 'cursor' do
           counter 'cursor-insert key and value bytes inserted',
                   as: 'insert_key_value_bytes'
