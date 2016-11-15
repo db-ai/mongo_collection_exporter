@@ -87,6 +87,12 @@ class DSL
       ::DSL::NestedProxy.new(scope, labels, nested_context, &block)
     end
 
+    def namespace(key_name, &block)
+      nested_context = ::DSL::Context.new(key_name, nil, self)
+
+      ::DSL::NestedProxy.new(context, labels, nested_context, &block)
+    end
+
     # Extraction and transformaton
 
     def extract(key_name, fallback = nil)
