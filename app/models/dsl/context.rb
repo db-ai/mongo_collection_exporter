@@ -9,14 +9,18 @@ class DSL
     end
 
     def root?
-      !!parent
+      !parent.respond_to? :parent_context
+    end
+
+    def parent_context
+      parent.parent_context
     end
 
     def metric_name
       if root?
         [nickname]
       else
-        parent.metric_name + [nickname]
+        parent_context.metric_name + [nickname]
       end
     end
 
@@ -24,7 +28,7 @@ class DSL
       if root?
         [name]
       else
-        parent.context_name + [name]
+        parent_context.context_name + [name]
       end
     end
   end
