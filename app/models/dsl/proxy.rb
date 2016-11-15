@@ -3,7 +3,7 @@ class DSL
     attr_reader :all, :keys_not_found, :keys_left, :value_missing
     attr_reader :rules, :context, :labels
 
-    def initialize(rules, context, labels = {})
+    def initialize(context, labels = {}, &rules)
       @rules = rules.freeze
       @context = context
       @labels = labels.freeze
@@ -33,11 +33,11 @@ class DSL
     end
 
     def not_found(name)
-      @keys_not_found << nested(name)
+      @keys_not_found << name
     end
 
     def key_left(name, value)
-      @keys_left[nested(name)] = value
+      @keys_left[name] = value
     end
 
     def leftover_the_rest_of(object)
@@ -52,14 +52,14 @@ class DSL
 
     def counter(key_name, labels = {}, as: nil)
       as ||= key_name
-      register Point::Counter.new nested(as),
+      register Point::Counter.new metric_name(as),
                                   extract(key_name),
                                   all_labels(labels)
     end
 
     def gauge(key_name, labels = {}, as: nil)
       as ||= key_name
-      register Point::Gauge.new nested(as),
+      register Point::Gauge.new metric_name(as),
                                 extract(key_name),
                                 all_labels(labels)
     end
@@ -82,8 +82,9 @@ class DSL
 
     def inside(key_name, as: nil, &block)
       scope = extract(key_name)
+      nested_context = ::DSL::Context.new(key_name, as, self)
 
-      ::DSL::NestedProxy.new(block, scope, labels, key_name, self)
+      ::DSL::NestedProxy.new(scope, labels, nested_context, &block)
     end
 
     # Extraction and transformaton
@@ -123,7 +124,7 @@ class DSL
     end
 
     private
-    def nested(key_name)
+    def metric_name(key_name)
       key_name
     end
 

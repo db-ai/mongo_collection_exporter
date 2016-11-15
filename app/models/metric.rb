@@ -12,7 +12,7 @@ class Metric
   def initialize(raw, labels = {})
     @raw = raw
     @labels = labels
-    @proxy = DSL::Proxy.new(self.class.proxy, raw, labels)
+    @proxy = DSL::Proxy.new(raw, labels, &self.class.proxy)
   end
 
   def all
