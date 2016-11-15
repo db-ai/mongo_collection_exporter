@@ -41,6 +41,8 @@ class DSL
     end
 
     def leftover_the_rest_of(object)
+      return unless object
+
       object.each do |key, value|
         key_left key, value
       end
@@ -87,7 +89,9 @@ class DSL
     # Extraction and transformaton
 
     def extract(key_name, fallback = nil)
-      context.delete(key_name) do
+      current_context = context || Hash.new
+
+      current_context.delete(key_name) do
         not_found(key_name)
         break fallback
       end
