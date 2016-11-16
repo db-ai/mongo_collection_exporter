@@ -3,7 +3,7 @@ require_relative '../metric/mongos'
 class Server
   class Mongos < Server
     def metrics
-      Metric::Mongos.new(raw_metrics, labels)
+      [Metric::Mongos.new(raw_metrics, labels)]
     end
 
     def raw_metrics

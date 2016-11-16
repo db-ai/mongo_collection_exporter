@@ -1,7 +1,7 @@
 class Server
   class Shard < Server
     def metrics
-      Metric::Mongod.new(raw_metrics, labels)
+      [Metric::Mongod.new(raw_metrics, labels)] + namespaces_metrics
     end
 
     def raw_metrics
