@@ -48,11 +48,11 @@ class Point
   end
 
   def help
-    "HELP #{help_text}" if help_text
+    "# HELP #{help_text}" if help_text
   end
 
   def type
-    "TYPE #{full_name} #{type_name}"
+    "# TYPE #{full_name} #{type_name}"
   end
 
   def type_name
