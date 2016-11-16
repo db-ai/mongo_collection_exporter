@@ -63,7 +63,7 @@ class Point
     return '' if labels.empty?
     text = labels.map do |key, value|
       %Q/#{key}=#{value.to_s.dump}/
-    end.join(", ")
+    end.join(",")
 
     "{#{text}}"
   end
