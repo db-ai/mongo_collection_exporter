@@ -1,5 +1,6 @@
 class Point
   attr_reader :name, :value, :labels
+  attr_reader :help_text
 
   def initialize(name, value, labels = {})
     unless labels.is_a? Hash
@@ -9,6 +10,7 @@ class Point
     @name = name
     @value = value
     @labels = labels
+    @help_text = nil
   end
 
   def to_prom(prefix)
@@ -50,7 +52,11 @@ class Point
   end
 
   def type
-    "TYPE #{full_name}"
+    "TYPE #{full_name} #{type_name}"
+  end
+
+  def type_name
+    'UNTYPED'
   end
 
   def full_labels
