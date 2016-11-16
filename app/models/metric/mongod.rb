@@ -165,16 +165,14 @@ class Metric
           end
         end
 
-        # TODO: Might me usefull, export as well.
         ignore 'repl'
-        # ignore 'commands'
 
         inside 'commands' do
           counter "<UNKNOWN>", as: "unknown"
 
           iterate do |key, value|
-            counter! "command_failed", value['failed'], type: key
-            counter! "command_total", value['total'], type: key
+            counter! "command_failed", value['failed'], cmd: key
+            counter! "command_total", value['total'], cmd: key
           end
         end
       end
