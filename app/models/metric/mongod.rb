@@ -35,7 +35,7 @@ class Metric
         gauge 'setVersion', as: 'set_version'
 
         gauge! 'is_master', extract('ismaster') ? 1 : 0
-        gauge! 'visible_hosts', extract('hosts').size
+        gauge! 'visible_hosts', (extract('hosts') || []).size
       end
 
       inside 'globalLock', as: 'global_lock' do
