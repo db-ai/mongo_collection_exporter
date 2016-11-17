@@ -1,7 +1,7 @@
 class Metric
   class Collection < Metric
     metrics do
-      ignore 'ns', 'capped', '$gleStats'
+      ignore 'ns', 'capped', '$gleStats', 'ok'
 
       counter 'count', as: 'collection_count'
 
@@ -16,8 +16,6 @@ class Metric
       inside 'wiredTiger', as: 'wt' do
         use WiredTigerCollectionHelper
       end
-
-      gauge 'ok', as: 'metrics_is_ok'
     end
   end
 end
