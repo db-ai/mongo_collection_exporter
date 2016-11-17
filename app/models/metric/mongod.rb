@@ -126,10 +126,9 @@ class Metric
         ignore 'record' # MMAPv1 (count of on disk moves)
 
         inside 'document' do
-          counter 'deleted'
-          counter 'inserted'
-          counter 'returned'
-          counter 'updated'
+          iterate do |key, value|
+            counter! 'metrics_documents', value, op: key
+          end
         end
 
         inside 'operation' do
