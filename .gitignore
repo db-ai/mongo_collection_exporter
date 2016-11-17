@@ -1,7 +1,7 @@
 .DS_Store
 log/**/*
 tmp/**/*
-vendor/data/*
+vendor/prometheus/data/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
