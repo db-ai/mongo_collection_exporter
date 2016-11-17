@@ -9,15 +9,25 @@ class Server
     end
 
     def fetch_metrics
-      server_metrics + namespaces_metrics
+      server_metrics + namespaces_metrics + replica_set_metrics
     end
 
     def server_metrics
-      [Metric::Mongod.new(raw_metrics, labels)]
+      [Metric::Mongod.new(raw_server_metrics, labels)]
+    end
+
+    def replica_set_metrics
+      return [] unless replica?
+
+      [Metric::ReplicaSet.new(raw_rs_metrics, labels)]
     end
 
     def raw_server_metrics
       run(selector: { serverStatus: 1 }, db_name: 'admin')
+    end
+
+    def raw_rs_metrics
+      run(selector: { replSetGetStatus: 1 }, db_name: 'admin')
     end
 
     def namespaces_metrics
@@ -58,6 +68,10 @@ class Server
 
     def extra_labels
       { rs: replica_name }
+    end
+
+    def replica?
+      features.include? :replica
     end
   end
 end
