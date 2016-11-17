@@ -52,12 +52,12 @@
       <th>Replica Set</th>
     </tr>
 
-    <% @config.mongo.shards.each do |mongoc| %>
+    <% @config.mongo.shards.each do |shard| %>
 
     <tr>
-      <td><%= link_to mongoc.address, "/servers/#{mongoc.address}" %></td>
-      <td><%= mongoc.status %></td>
-      <td><%= mongoc.replica_name %></td>
+      <td><%= link_to shard.address, "/servers/#{shard.address}" %></td>
+      <td><%= shard.status %></td>
+      <td><%= shard.replica_name if shard.alive? %></td>
     </tr>
 
     <% end %>

@@ -13,7 +13,7 @@ class Metric
       # Ignore index stats, as we will get them from WT cache info
       ignore 'totalIndexSize', 'indexSizes'
 
-      inside 'wiredTiger' do
+      inside 'wiredTiger', as: 'wt' do
         use WiredTigerCollectionHelper
       end
 

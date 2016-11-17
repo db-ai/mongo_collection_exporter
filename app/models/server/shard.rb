@@ -1,6 +1,6 @@
 class Server
   class Shard < Server
-    def metrics
+    def fetch_metrics
       [Metric::Mongod.new(raw_metrics, labels)] + namespaces_metrics
     end
 

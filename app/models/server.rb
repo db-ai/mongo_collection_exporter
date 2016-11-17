@@ -45,7 +45,19 @@ class Server
     [role, features].flatten.join(" ")
   end
 
+  def alive?
+    !!server
+  end
+
+  def metrics
+    return [] unless alive?
+
+    fetch_metrics
+  end
+
   def features
+    return [] unless alive?
+
     my_features = []
     my_features << :hidden if server.description.hidden?
     my_features << :replica if server.replica_set_name
@@ -54,6 +66,8 @@ class Server
   end
 
   def role
+    return :down unless alive?
+
     if server.primary?
       :master
     elsif server.secondary?
