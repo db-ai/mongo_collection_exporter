@@ -1,32 +1,40 @@
 version: 1
 
+# To give it a try get `mtools` (https://github.com/rueckstiess/mtools) and
+# then launch your small cluster:
+#
+# mlaunch init --replicaset --sharded hot warm cold --config 3 --mongos 3 --port 27170 --hostname localhost
+#
+# Note: you must specify the nodes in the configuration using the hostnames,
+# not the IP address, becuse mongo uses hostnames in nodes names.
+
 mongo:
   # Only `sharded` is currently supported
   mode: sharded
 
   # List of mongos instanes to connect
   mongos:
-    - 127.0.0.1:27170
-    - 127.0.0.1:27171
-    - 127.0.0.1:27172
+    - localhost:27170
+    - localhost:27171
+    - localhost:27172
 
   # Shard topology
   shards:
-    - 127.0.0.1:27173
-    - 127.0.0.1:27174
-    - 127.0.0.1:27175
-    - 127.0.0.1:27176
-    - 127.0.0.1:27177
-    - 127.0.0.1:27178
-    - 127.0.0.1:27179
-    - 127.0.0.1:27180
-    - 127.0.0.1:27181
+    - localhost:27173
+    - localhost:27174
+    - localhost:27175
+    - localhost:27176
+    - localhost:27177
+    - localhost:27178
+    - localhost:27179
+    - localhost:27180
+    - localhost:27181
 
   # List of config servers
   configs:
-    - 127.0.0.1:27182
-    - 127.0.0.1:27183
-    - 127.0.0.1:27184
+    - localhost:27182
+    - localhost:27183
+    - localhost:27184
 
 # Namespaces to export.
 #
