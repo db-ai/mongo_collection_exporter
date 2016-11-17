@@ -17,6 +17,10 @@ class Point
     with(prefix) { metric }
   end
 
+  def to_prom_banner(prefix)
+    with(prefix) { banner }
+  end
+
   def metric
     [full_value].compact.join("\n")
   end

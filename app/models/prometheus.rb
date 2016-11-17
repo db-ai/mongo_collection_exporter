@@ -1,14 +1,16 @@
 class Prometheus
   attr_reader :config
 
+  METRIC_PREFIX = "mongo".freeze
+
   def initialize(config = Settings.current)
     @config = config
   end
 
   def to_s
     lines = all_points_by_name.each_with_object([]) do |(name, points), memo|
-      memo << points.first.banner
-      memo.concat points.map {|point| point.to_prom("mongo") }
+      memo << points.first.to_prom_banner(METRIC_PREFIX)
+      memo.concat points.map {|point| point.to_prom(METRIC_PREFIX) }
     end
 
     # Trailing new-line is strictly required by Prometheus
