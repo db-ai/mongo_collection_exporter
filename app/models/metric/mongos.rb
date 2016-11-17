@@ -1,9 +1,18 @@
 class Metric
   class Mongos < Metric
     metrics do
-      ignore 'host', 'advisoryHostFQDNs', 'version', 'process', 'pid', 'uptime',
-             'uptimeMillis', 'uptimeEstimate', 'localTime', 'extra_info',
+      ignore 'host', 'advisoryHostFQDNs', 'version', 'process', 'pid',
+             'uptimeMillis', 'uptimeEstimate', 'localTime',
              'sharding'
+
+      gauge 'uptime', as: 'uptime_seconds'
+
+      inside 'extra_info' do
+        ignore 'note'
+
+        gauge 'heap_usage_bytes'
+        gauge 'page_faults'
+      end
 
       inside 'asserts' do
         counter 'rollovers'

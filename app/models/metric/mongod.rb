@@ -19,15 +19,20 @@ class Metric
              'version',
              'process',
              'pid',
-             'uptime',
              'uptimeMillis',
              'uptimeEstimate',
              'localTime',
-             'extra_info',
              'sharding',
              'writeBacksQueued',
              'storageEngine',
              '$gleStats'
+
+      gauge 'uptime', as: 'uptime_seconds'
+
+      inside 'extra_info' do
+        gauge 'heap_usage_bytes'
+        gauge 'page_faults'
+      end
 
       inside 'repl' do
         ignore 'rbid', 'setName', 'primary', 'secondary', 'me', 'electionId'
