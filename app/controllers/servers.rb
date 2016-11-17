@@ -3,6 +3,7 @@ require 'pp'
 MongoCollectionExporter::App.controllers :servers do
   get :index, with: :address do
     @server = Settings.current.mongo.find(params[:address]) || halt(404)
+    @metrics = @server.replica_set_metrics.first
 
     render 'show'
   end
@@ -11,6 +12,6 @@ MongoCollectionExporter::App.controllers :servers do
     @server = Settings.current.mongo.find(params[:address]) || halt(404)
     @metrics = @server.namespaces_metrics.first
 
-    render 'collection'
+    render 'show'
   end
 end

@@ -4,10 +4,10 @@
 
 <table>
   <tr>
-    <th>Metrics (Total: <%= @server.metrics.keys_left.count %>)</th>
+    <th>Metrics (Total: <%= @metrics.keys_left.count %>)</th>
     <th>Value</th>
   </tr>
-  <% @server.metrics.keys_left.each do |name, value| %>
+  <% @metrics.keys_left.each do |name, value| %>
     <tr>
       <td><%= name %></td>
       <td><pre><%= value.to_yaml %></pre></td>
@@ -19,10 +19,10 @@
 
 <table>
   <tr>
-    <th>Metric (Total: <%= @server.metrics.all.count %>)</th>
+    <th>Metric (Total: <%= @metrics.all.count %>)</th>
     <th>Value</th>
   </tr>
-  <% @server.metrics.all.each do |metric| %>
+  <% @metrics.all.each do |metric| %>
     <tr>
       <td><%= metric.full_name_with_labels %></td>
       <td><%= metric.value %></td>
