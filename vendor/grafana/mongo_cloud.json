@@ -884,15 +884,696 @@
           "seriesOverrides": [],
           "links": [],
           "repeat": null
+        },
+        {
+          "title": "Connections",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 10,
+          "targets": [
+            {
+              "expr": "sum(mongo_connections_current{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"})",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_connections_current",
+              "step": 2,
+              "legendFormat": "Current"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "none"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Asserts",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 11,
+          "targets": [
+            {
+              "expr": "sum(rate(mongo_asserts{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale])) by (type)",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_asserts",
+              "step": 2,
+              "legendFormat": "{{type}}"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "none"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Tickets Available",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 12,
+          "targets": [
+            {
+              "expr": "avg(mongo_wt_concurrent_transactions_read_available{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"})",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_wt_concurrent_transactions_read_available",
+              "step": 2,
+              "legendFormat": "Read Tickets Used"
+            },
+            {
+              "expr": "avg(mongo_wt_concurrent_transactions_write_available{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"})",
+              "intervalFactor": 2,
+              "refId": "B",
+              "metric": "mongo_wt_concurrent_transactions_write_available",
+              "step": 2,
+              "legendFormat": "Write Tickets Used"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "none"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Cache Usage",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 13,
+          "targets": [
+            {
+              "expr": "sum(mongo_wt_cache_used_bytes{coll=\"\", role=~\"$role\", rs=~\"$rs\", node=~\"$node\"})",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_wt_cache_used_bytes",
+              "step": 2,
+              "legendFormat": "Cache Usage"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "bytes"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Cache Activity",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 14,
+          "targets": [
+            {
+              "expr": "sum(rate(mongo_wt_cache_read_into_bytes{coll=\"\", role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale]))",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_wt_cache_read_into_bytes",
+              "step": 2,
+              "legendFormat": "Read Into"
+            },
+            {
+              "expr": "sum(rate(mongo_wt_cache_written_from_bytes{coll=\"\", role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale]))",
+              "intervalFactor": 2,
+              "refId": "B",
+              "metric": "mongo_wt_cache_written_from_bytes",
+              "step": 2,
+              "legendFormat": "Write From"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "bytes"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Documents Metrics",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 15,
+          "targets": [
+            {
+              "expr": "sum(rate(mongo_metrics_documents{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale])) by (op)",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_metrics_documents",
+              "step": 2,
+              "legendFormat": "{{op}}"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "bytes"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Query Executor",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 16,
+          "targets": [
+            {
+              "expr": "sum(rate(mongo_query_documents_scanned_total{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale]))",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_query_documents_scanned_total",
+              "step": 2,
+              "legendFormat": "Documents Scanned"
+            },
+            {
+              "expr": "sum(rate(mongo_query_index_scanned_total{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale]))",
+              "intervalFactor": 2,
+              "refId": "B",
+              "metric": "mongo_query_index_scanned_total",
+              "step": 2,
+              "legendFormat": "Index Scanned"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "none"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
+        },
+        {
+          "title": "Query Targeting",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 17,
+          "targets": [
+            {
+              "expr": "sum(rate(mongo_query_documents_scanned_total{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale])) / sum(rate(mongo_metrics_documents{role=~\"$role\", rs=~\"$rs\", node=~\"$node\", op=\"returned\"}[$scale]))",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "mongo_query_documents_scanned_total",
+              "step": 2,
+              "legendFormat": "Documents Scanned / Returned"
+            },
+            {
+              "expr": "sum(rate(mongo_query_index_scanned_total{role=~\"$role\", rs=~\"$rs\", node=~\"$node\"}[$scale])) / sum(rate(mongo_metrics_documents{role=~\"$role\", rs=~\"$rs\", node=~\"$node\", op=\"returned\"}[$scale]))",
+              "intervalFactor": 2,
+              "refId": "B",
+              "metric": "mongo_query_index_scanned_total",
+              "step": 2,
+              "legendFormat": "Index Scanned / Returned"
+            }
+          ],
+          "datasource": "${DS_PROMETHEUS}",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "none"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": true,
+            "sideWidth": 400
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "sort": 0,
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "decimals": 0
         }
       ]
-    },
-    {
-      "title": "New row",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "panels": []
     }
   ],
   "time": {
@@ -973,8 +1654,9 @@
       {
         "auto": false,
         "current": {
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m",
+          "tags": []
         },
         "datasource": null,
         "hide": 0,
@@ -986,12 +1668,12 @@
           {
             "text": "1m",
             "value": "1m",
-            "selected": true
+            "selected": false
           },
           {
             "text": "5m",
             "value": "5m",
-            "selected": false
+            "selected": true
           },
           {
             "text": "10m",
@@ -1040,7 +1722,7 @@
     "list": []
   },
   "schemaVersion": 12,
-  "version": 39,
+  "version": 51,
   "links": [],
   "gnetId": null
 }
