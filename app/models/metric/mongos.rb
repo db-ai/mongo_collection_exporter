@@ -15,7 +15,7 @@ class Metric
 
       inside 'opcounters' do
         iterate do |key, value|
-          counter! 'opcounters', value, type: key
+          counter! 'opcounters', value, op: key, src: 'self'
         end
       end
 
