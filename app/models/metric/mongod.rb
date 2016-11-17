@@ -177,7 +177,7 @@ class Metric
         end
       end
 
-      gauge 'ok', as: 'metrics_is_ok'
+      gauge 'ok', as: 'scrape_ok'
     end
   end
 end
