@@ -14,11 +14,15 @@ class Point
   end
 
   def to_prom(prefix)
-    with(prefix) { banner }
+    with(prefix) { metric }
+  end
+
+  def metric
+    [full_value].compact.join("\n")
   end
 
   def banner
-    [help, type, full_value].compact.join("\n")
+    [help, type].compact.join("\n")
   end
 
   def full_name
