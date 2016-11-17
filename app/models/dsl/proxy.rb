@@ -104,6 +104,18 @@ class DSL
       end
     end
 
+    def key?(key_name)
+      current_context = context || Hash.new
+
+      current_context.key? key_name
+    end
+
+    def value(key_name, fallback = nil)
+      current_context = context || Hash.new
+
+      current_context[key_name] || fallback
+    end
+
     def ignore(*key_names)
       key_names.flatten.each do |key_name|
         extract key_name
