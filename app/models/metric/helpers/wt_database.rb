@@ -134,13 +134,13 @@ class WiredTigerDatabaseHelper < DSL::Helper
       inside 'read' do
         gauge 'out'
         gauge 'available'
-        gauge 'totalTickets', as: 'tickets_total'
+        gauge 'totalTickets', as: 'max'
       end
 
       inside 'write' do
         gauge 'out'
         gauge 'available'
-        gauge 'totalTickets', as: 'tickets_total'
+        gauge 'totalTickets', as: 'max'
       end
     end
 
