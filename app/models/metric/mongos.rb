@@ -43,11 +43,11 @@ class Metric
 
         inside 'cursor' do
           inside 'open' do
-            gauge 'noTimeout', as: 'no_timeout'
-            gauge 'pinned'
-            gauge 'total'
-            gauge 'singleTarget'
-            gauge 'multiTarget'
+            ignore 'total'
+
+            iterate do |key, value|
+              gauge! 'metric_cursors_open', value, type: key
+            end
           end
         end
 
