@@ -146,10 +146,7 @@ class WiredTigerDatabaseHelper < DSL::Helper
 
     inside 'cache' do
       ignore 'bytes belonging to page images in the cache',
-             'bytes currently in the cache',
              'bytes not belonging to page images in the cache',
-             'bytes read into cache',
-             'bytes written from cache',
              'checkpoint blocked page eviction',
              'eviction calls to get a page',
              'eviction calls to get a page found queue empty',
@@ -207,6 +204,15 @@ class WiredTigerDatabaseHelper < DSL::Helper
              'tracked dirty bytes in the cache',
              'tracked dirty pages in the cache',
              'unmodified pages evicted'
+
+      gauge 'bytes currently in the cache',
+            as: 'used_bytes'
+
+      counter 'bytes read into cache',
+            as: 'read_into_bytes'
+
+      counter 'bytes written from cache',
+            as: 'written_from_bytes'
     end
 
     inside 'cursor' do
