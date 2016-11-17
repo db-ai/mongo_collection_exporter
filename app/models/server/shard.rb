@@ -1,19 +1,23 @@
 class Server
   class Shard < Server
-    def fetch_metrics
-      [Metric::Mongod.new(raw_metrics, labels)] + namespaces_metrics
-    end
-
-    def raw_metrics
-      run(selector: { serverStatus: 1 }, db_name: 'admin')
-    end
-
     def replica_name
       server.replica_set_name
     end
 
     def databases
       client.database_names - ['local'.freeze]
+    end
+
+    def fetch_metrics
+      server_metrics + namespaces_metrics
+    end
+
+    def server_metrics
+      [Metric::Mongod.new(raw_metrics, labels)]
+    end
+
+    def raw_server_metrics
+      run(selector: { serverStatus: 1 }, db_name: 'admin')
     end
 
     def namespaces_metrics
