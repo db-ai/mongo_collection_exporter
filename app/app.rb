@@ -10,7 +10,7 @@ module MongoCollectionExporter
     layout :mono
 
     get '/' do
-      "Hello World"
+      'mongo_collection_exporter metrics are <a href="/metrics">here</a>'
     end
   end
 end
