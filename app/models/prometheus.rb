@@ -4,15 +4,16 @@
 # Additionaly it provides `scrape_duration_ms` metric, that just tells how
 # long it took to read all metrics.
 class Prometheus
-  attr_reader :config
+  attr_reader :config, :prefix
 
   METRIC_PREFIX = "mongo".freeze
 
-  def initialize(config = Settings.current)
+  def initialize(config = Settings.current, prefix = METRIC_PREFIX)
     @config = config
     @points = []
+    @prefix = prefix
 
-    prepare!
+    prepare
   end
 
   def to_s
@@ -25,18 +26,19 @@ class Prometheus
   def scrape_duration
     point = Point::Gauge.new("scrape_duration_ms", (@runtime * 1000.0).to_i)
 
-    [point.to_prom_banner(METRIC_PREFIX), point.to_prom(METRIC_PREFIX)]
+    [point.to_prom_banner(prefix), point.to_prom(prefix)]
   end
 
-  def prepare!
-    before = Time.now.to_f
+  def prepare
+    runtime do
+      points_iterator = all_points_by_name.each_with_object([])
 
-    @points = all_points_by_name.each_with_object([]) do |(name, points), memo|
-      memo << points.first.to_prom_banner(METRIC_PREFIX)
-      memo.concat points.map {|point| point.to_prom(METRIC_PREFIX) }
+      @points = points_iterator do |(name, points), memo|
+        memo
+          .concat [points.first.to_prom_banner(prefix)]
+          .concat promethize(points)
+      end
     end
-
-    @runtime = Time.now.to_f - before
 
     @points.concat scrape_duration
   end
@@ -52,8 +54,18 @@ class Prometheus
   def all_points_by_name
     all_points.each_with_object(Hash.new) do |point, memo|
       full_name = point.full_name
-      memo[full_name] ||= Array.new
-      memo[full_name].push(point)
+      points = memo[full_name] ||= Array.new
+      points.push(point)
     end
+  end
+
+  def promethize(points)
+    points.map {|point| point.to_prom(prefix) }
+  end
+
+  def runtime(before = Time.now)
+    yield
+
+    @runtime = Time.now - before
   end
 end
