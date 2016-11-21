@@ -25,7 +25,7 @@ class Server
   def default_labels
     {
       node: address,
-      role: self.class.name.split("::").last.downcase,
+      role: self.class.name.split('::').last.downcase
     }
   end
 
@@ -47,11 +47,11 @@ class Server
   end
 
   def status
-    [role, features].flatten.join(" ")
+    [role, features].flatten.join(' ')
   end
 
   def alive?
-    !!server
+    false ^ server
   end
 
   def metrics

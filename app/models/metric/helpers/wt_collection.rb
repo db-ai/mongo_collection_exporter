@@ -29,8 +29,8 @@ class WiredTigerCollectionHelper < DSL::Helper
       gauge 'highest merge generation in the LSM tree',
             as: 'merge_generation_max'
 
-      counter 'queries that could have benefited from a Bloom filter that did not exist',
-              as: 'bloom_filter_query_misses'
+      counter 'queries that could have benefited from a Bloom filter ' \
+              'that did not exist', as: 'bloom_filter_query_misses'
 
       gauge 'sleep for LSM checkpoint throttle', { task: 'checkpoint' },
             as: 'throttle_sleep'

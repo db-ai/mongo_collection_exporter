@@ -44,10 +44,8 @@ class WiredTigerDatabaseHelper < DSL::Helper
             as: 'work_queue_length_max'
 
       # More likely to be a counter
-      counter 'number of allocation state races',
-              as: 'allocation_state_races'
-      counter 'number of flush calls',
-              as: 'flush_calls'
+      counter 'number of allocation state races', as: 'allocation_state_races'
+      counter 'number of flush calls',            as: 'flush_calls'
       counter 'number of operation slots viewed for allocation',
               as: 'slots_viewed_for_allocation'
       counter 'number of times operation allocation failed',
@@ -55,79 +53,44 @@ class WiredTigerDatabaseHelper < DSL::Helper
       counter 'number of times worker found no work',
               as: 'worker_work_not_found'
 
-      counter 'total allocations',
-              as: 'allocations_total'
+      counter 'total allocations', as: 'allocations_total'
 
-      counter 'total compact calls', { type: 'compact' },
-              as: 'calls_total'
-      counter 'total insert calls', { type: 'insert' },
-              as: 'calls_total'
-      counter 'total remove calls', { type: 'remove' },
-              as: 'calls_total'
-      counter 'total search calls', { type: 'search' },
-              as: 'calls_total'
-      counter 'total update calls', { type: 'update' },
-              as: 'calls_total'
+      counter 'total compact calls', { type: 'compact' }, as: 'calls_total'
+      counter 'total insert calls',  { type: 'insert' }, as: 'calls_total'
+      counter 'total remove calls',  { type: 'remove' }, as: 'calls_total'
+      counter 'total search calls',  { type: 'search' }, as: 'calls_total'
+      counter 'total update calls',  { type: 'update' }, as: 'calls_total'
     end
 
     inside 'block-manager', as: 'block_manager' do
-      counter 'blocks pre-loaded',
-              as: 'preloaded_blocks'
-
-      counter 'blocks read',
-              as: 'read_blocks'
-
-      counter 'blocks written',
-              as: 'written_blocks'
-
-      counter 'bytes read',
-              as: 'read_bytes'
-
-      counter 'bytes written',
-              as: 'written_bytes'
-
-      counter 'bytes written for checkpoint',
-              as: 'checkpoint_written_bytes'
-
-      counter 'mapped blocks read',
-              as: 'read_mapped_blocks'
-
-      counter 'mapped bytes read',
-              as: 'read_mapped_bytes'
+      counter 'blocks pre-loaded',  as: 'preloaded_blocks'
+      counter 'blocks read',        as: 'read_blocks'
+      counter 'blocks written',     as: 'written_blocks'
+      counter 'bytes read',         as: 'read_bytes'
+      counter 'bytes written',      as: 'written_bytes'
+      counter 'bytes written for checkpoint', as: 'checkpoint_written_bytes'
+      counter 'mapped blocks read', as: 'read_mapped_blocks'
+      counter 'mapped bytes read',  as: 'read_mapped_bytes'
     end
 
     inside 'connection' do
-      counter 'auto adjusting condition resets',
-              as: 'adjusting_resets'
-
-      counter 'auto adjusting condition wait calls',
-              as: 'adjusting_wait_calls'
-
-      counter 'files currently open',
-              as: 'files_open'
-
-      counter 'memory allocations',
-              as: 'mem_allocations'
-      counter 'memory frees',
-              as: 'mem_frees'
-      counter 'memory re-allocations',
-              as: 'mem_realloc'
+      counter 'auto adjusting condition resets',     as: 'adjusting_resets'
+      counter 'auto adjusting condition wait calls', as: 'adjusting_wait_calls'
+      counter 'files currently open',                as: 'files_open'
+      counter 'memory allocations',                  as: 'mem_allocations'
+      counter 'memory frees',                        as: 'mem_frees'
+      counter 'memory re-allocations',               as: 'mem_realloc'
 
       counter 'pthread mutex condition wait calls',
               as: 'mutex_condition_wait_calls'
-
       counter 'pthread mutex shared lock read-lock calls',
               as: 'mutex_shared_lock_read_calls'
-
       counter 'pthread mutex shared lock write-lock calls',
               as: 'mutex_shared_lock_write_calls'
 
-      counter 'total fsync I/Os',
-              as: 'fsync_io_total'
-      counter 'total read I/Os',
-              as: 'read_io_total'
-      counter 'total write I/Os',
-              as: 'write_io_total'
+      counter 'total fsync I/Os', as: 'fsync_io_total'
+      counter 'total read I/Os',  as: 'read_io_total'
+      counter 'total write I/Os', as: 'write_io_total'
     end
 
     inside 'concurrentTransactions', as: 'concurrent_transactions' do
@@ -205,14 +168,9 @@ class WiredTigerDatabaseHelper < DSL::Helper
              'tracked dirty pages in the cache',
              'unmodified pages evicted'
 
-      gauge 'bytes currently in the cache',
-            as: 'used_bytes'
-
-      counter 'bytes read into cache',
-              as: 'read_into_bytes'
-
-      counter 'bytes written from cache',
-              as: 'written_from_bytes'
+      gauge 'bytes currently in the cache', as: 'used_bytes'
+      counter 'bytes read into cache',      as: 'read_into_bytes'
+      counter 'bytes written from cache',   as: 'written_from_bytes'
     end
 
     inside 'cursor' do

@@ -30,10 +30,11 @@
 # every subapp. You can override these settings in the subapps as needed.
 Padrino.configure_apps do
   # enable :sessions
-  set :session_secret, 'bc7d7e31cb76964a0a99e36b3982fad1eff0ed904b6f7af777617c78cd6ffc6b'
+  set :session_secret, '<GENERATE_ME>'
   set :protection, except: :path_traversal
   set :protect_from_csrf, true
 end
 
 # Mounts the core application for this project
-Padrino.mount('MongoCollectionExporter::App', app_file: Padrino.root('app/app.rb')).to('/')
+APP_CLASS = 'MongoCollectionExporter::App'.freeze
+Padrino.mount(APP_CLASS, app_root: Padrino.root('app/app.rb')).to('/')
