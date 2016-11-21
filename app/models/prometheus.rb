@@ -1,3 +1,5 @@
+require 'benchmark'
+
 # This class aggregates all metrics from all nodes and presents them in the
 # Prometheus Text format (>0.0.4)
 #
@@ -61,9 +63,7 @@ class Prometheus
     points.map { |point| point.to_prom(prefix) }
   end
 
-  def runtime(before = Time.now)
-    yield
-
-    @runtime = Time.now - before
+  def runtime(&body)
+    @runtime = Benchmark.realtime(&body)
   end
 end
