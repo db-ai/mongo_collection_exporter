@@ -1,8 +1,8 @@
-# This metrics are based on implementation of the getReplicationInfo and
-# printSlaveReplicationInfo functions of the mongoshell (db.js)
-#
-# See: https://git.io/vXHSJ
 class Metric
+  # This metrics are based on implementation of the getReplicationInfo and
+  # printSlaveReplicationInfo functions of the mongoshell (db.js)
+  #
+  # See: https://git.io/vXHSJ
   class ReplicaSet < Metric
     metrics do
       # This are comming from Collector::ReplicaSet
@@ -18,13 +18,11 @@ class Metric
       gauge 'myState', as: 'rs_state'
       gauge 'term', as: 'rs_election_term'
 
-      if key? 'syncingTo'
-        gauge! 'rs_syncing', 1, {to: extract('syncingTo')}
-      end
+      gauge! 'rs_syncing', 1, to: extract('syncingTo') if key? 'syncingTo'
 
       members = value('members', [])
-      primary = members.find {|member| member['state'] == 1}
-      me = members.find {|member| member['self']}
+      primary = members.find { |member| member['state'] == 1 }
+      me = members.find { |member| member['self'] }
       others = members - [me]
 
       if me
@@ -34,7 +32,7 @@ class Metric
         else
           # If there no primary, then replication las is against most recent
           # oplogDate
-          current_oplog = members.map {|member| member['optimeDate']}.max
+          current_oplog = members.map { |member| member['optimeDate'] }.max
         end
 
         lag = me['optimeDate'] - current_oplog

@@ -9,9 +9,9 @@ class Settings
     def initialize(raw)
       @raw = raw
 
-      @mongos = list_mongos.map {|srv| Server::Mongos.new(srv) }
-      @configs = list_configs.map {|srv| Server::Config.new(srv) }
-      @shards = list_shards.map {|srv| Server::Shard.new(srv) }
+      @mongos = list_mongos.map { |srv| Server::Mongos.new(srv) }
+      @configs = list_configs.map { |srv| Server::Config.new(srv) }
+      @shards = list_shards.map { |srv| Server::Shard.new(srv) }
 
       validate_mode
     end
@@ -21,7 +21,7 @@ class Settings
     end
 
     def find(address)
-      all.find {|srv| srv.address == address }
+      all.find { |srv| srv.address == address }
     end
 
     def all
@@ -33,16 +33,17 @@ class Settings
     end
 
     private
+
     def list_mongos
-      raw.fetch('mongos') { Array.new }
+      raw.fetch('mongos') { [] }
     end
 
     def list_configs
-      raw.fetch('configs') { Array.new }
+      raw.fetch('configs') { [] }
     end
 
     def list_shards
-      raw.fetch('shards') { Array.new }
+      raw.fetch('shards') { [] }
     end
 
     def validate_mode

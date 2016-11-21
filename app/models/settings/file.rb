@@ -5,7 +5,7 @@ class Settings
   #
   # Used in `Exporto::Config` class.
   class File
-    DEFAULT_PATH = Padrino.root("config", "settings.yml").freeze
+    DEFAULT_PATH = Padrino.root('config', 'settings.yml').freeze
     ENV_KEY_NAME = 'MONGO_EXPORT_CONF'.freeze
 
     attr_reader :current_path

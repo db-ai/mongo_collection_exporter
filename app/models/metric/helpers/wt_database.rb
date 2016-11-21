@@ -1,43 +1,43 @@
+# Thats a huge one. We are begin very specific on this metrics, to
+# spot the diffirence between server-level and collection level metrics.
 class WiredTigerDatabaseHelper < DSL::Helper
-  # Thats a huge one. We are begin very specific on this metrics, to
-  # spot the diffirence between server-level and collection level metrics.
   metrics do
     ignore 'uri'
 
     inside 'LSM', as: 'lsm' do
-      gauge 'application work units currently queued', {type: 'app'},
+      gauge 'application work units currently queued', { type: 'app' },
             as: 'work_units_queued'
 
-      gauge 'merge work units currently queued', {type: 'merge'},
+      gauge 'merge work units currently queued', { type: 'merge' },
             as: 'work_units_queued'
 
-      gauge 'switch work units currently queued', {type: 'switch'},
+      gauge 'switch work units currently queued', { type: 'switch' },
             as: 'work_units_queued'
 
       # Or gauge?
       counter 'rows merged in an LSM tree',
-               as: 'tree_rows_merged'
+              as: 'tree_rows_merged'
 
-      gauge 'sleep for LSM checkpoint throttle', {task: 'checkpoint'},
+      gauge 'sleep for LSM checkpoint throttle', { task: 'checkpoint' },
             as: 'throttle_sleep'
 
-      gauge 'sleep for LSM merge throttle', {task: 'merge'},
+      gauge 'sleep for LSM merge throttle', { task: 'merge' },
             as: 'merge_throttle_sleep'
 
-      gauge 'tree maintenance operations discarded', {type: 'discarded'},
+      gauge 'tree maintenance operations discarded', { type: 'discarded' },
             as: 'tree_maintanace_ops'
 
-      gauge 'tree maintenance operations executed', {type: 'executed'},
+      gauge 'tree maintenance operations executed', { type: 'executed' },
             as: 'tree_maintanace_ops'
 
-      gauge 'tree maintenance operations scheduled', {type: 'scheduled'},
+      gauge 'tree maintenance operations scheduled', { type: 'scheduled' },
             as: 'tree_maintanace_ops'
 
       gauge 'tree queue hit maximum',
             as: 'tree_queue_hit_max'
     end
 
-    inside "async" do
+    inside 'async' do
       gauge 'current work queue length',
             as: 'work_queue_length_current'
       gauge 'maximum work queue length',
@@ -45,28 +45,28 @@ class WiredTigerDatabaseHelper < DSL::Helper
 
       # More likely to be a counter
       counter 'number of allocation state races',
-               as: 'allocation_state_races'
+              as: 'allocation_state_races'
       counter 'number of flush calls',
-               as: 'flush_calls'
+              as: 'flush_calls'
       counter 'number of operation slots viewed for allocation',
-               as: 'slots_viewed_for_allocation'
+              as: 'slots_viewed_for_allocation'
       counter 'number of times operation allocation failed',
-               as: 'operation_allocation_failed'
+              as: 'operation_allocation_failed'
       counter 'number of times worker found no work',
-               as: 'worker_work_not_found'
+              as: 'worker_work_not_found'
 
       counter 'total allocations',
-            as: 'allocations_total'
+              as: 'allocations_total'
 
-      counter 'total compact calls', {type: 'compact'},
+      counter 'total compact calls', { type: 'compact' },
               as: 'calls_total'
-      counter 'total insert calls', {type: 'insert'},
+      counter 'total insert calls', { type: 'insert' },
               as: 'calls_total'
-      counter 'total remove calls', {type: 'remove'},
+      counter 'total remove calls', { type: 'remove' },
               as: 'calls_total'
-      counter 'total search calls', {type: 'search'},
+      counter 'total search calls', { type: 'search' },
               as: 'calls_total'
-      counter 'total update calls', {type: 'update'},
+      counter 'total update calls', { type: 'update' },
               as: 'calls_total'
     end
 
@@ -123,11 +123,11 @@ class WiredTigerDatabaseHelper < DSL::Helper
               as: 'mutex_shared_lock_write_calls'
 
       counter 'total fsync I/Os',
-            as: 'fsync_io_total'
+              as: 'fsync_io_total'
       counter 'total read I/Os',
-            as: 'read_io_total'
+              as: 'read_io_total'
       counter 'total write I/Os',
-            as: 'write_io_total'
+              as: 'write_io_total'
     end
 
     inside 'concurrentTransactions', as: 'concurrent_transactions' do
@@ -209,24 +209,24 @@ class WiredTigerDatabaseHelper < DSL::Helper
             as: 'used_bytes'
 
       counter 'bytes read into cache',
-            as: 'read_into_bytes'
+              as: 'read_into_bytes'
 
       counter 'bytes written from cache',
-            as: 'written_from_bytes'
+              as: 'written_from_bytes'
     end
 
     inside 'cursor' do
-      counter 'cursor create calls',      {type: 'create'}, as: 'calls'
-      counter 'cursor insert calls',      {type: 'insert'}, as: 'calls'
-      counter 'cursor next calls',        {type: 'next'}, as: 'calls'
-      counter 'cursor prev calls',        {type: 'prev'}, as: 'calls'
-      counter 'cursor remove calls',      {type: 'remove'}, as: 'calls'
-      counter 'cursor reset calls',       {type: 'reset'}, as: 'calls'
-      counter 'cursor restarted searches',{type: 'restarted'}, as: 'calls'
-      counter 'cursor search calls',      {type: 'search'}, as: 'calls'
-      counter 'cursor search near calls', {type: 'search_near'}, as: 'calls'
-      counter 'cursor update calls',      {type: 'update'}, as: 'calls'
-      counter 'truncate calls',           {type: 'truncate'}, as: 'calls'
+      counter 'cursor create calls',      { type: 'create' }, as: 'calls'
+      counter 'cursor insert calls',      { type: 'insert' }, as: 'calls'
+      counter 'cursor next calls',        { type: 'next' }, as: 'calls'
+      counter 'cursor prev calls',        { type: 'prev' }, as: 'calls'
+      counter 'cursor remove calls',      { type: 'remove' }, as: 'calls'
+      counter 'cursor reset calls',       { type: 'reset' }, as: 'calls'
+      counter 'cursor restarted searches', { type: 'restarted' }, as: 'calls'
+      counter 'cursor search calls',      { type: 'search' }, as: 'calls'
+      counter 'cursor search near calls', { type: 'search_near' }, as: 'calls'
+      counter 'cursor update calls',      { type: 'update' }, as: 'calls'
+      counter 'truncate calls',           { type: 'truncate' }, as: 'calls'
     end
 
     # TODO: Investigate need of this metrics?

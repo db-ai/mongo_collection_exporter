@@ -4,7 +4,7 @@ class DSL
   class NestedProxy < DSL::Proxy
     attr_reader :parent_context
 
-    def initialize(context, labels, parent_context, &rules)
+    def initialize(context, labels, parent_context)
       @parent_context = parent_context
 
       super context, labels
@@ -25,6 +25,7 @@ class DSL
     end
 
     private
+
     def metric_name(key_name)
       [parent_context.metric_name, key_name].flatten
     end

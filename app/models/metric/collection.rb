@@ -1,4 +1,5 @@
 class Metric
+  # Metrics extacted from db.getCollection(name).stats()
   class Collection < Metric
     metrics do
       ignore 'ns', 'capped', '$gleStats', 'ok'

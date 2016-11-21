@@ -1,4 +1,5 @@
 module MongoCollectionExporter
+  # Entry point for Padrino app
   class App < Padrino::Application
     Mongo::Logger.logger.level = Logger::INFO
 

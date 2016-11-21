@@ -1,4 +1,5 @@
 class Metric
+  # Metrics extacted from db.serverStatus() on `mongos` nodes
   class Mongos < Metric
     metrics do
       ignore 'host', 'advisoryHostFQDNs', 'version', 'process', 'pid',
@@ -61,11 +62,11 @@ class Metric
         end
 
         inside 'commands' do
-          counter "<UNKNOWN>", as: "unknown"
+          counter '<UNKNOWN>', as: 'unknown'
 
           iterate do |key, value|
-            counter! "command_failed", value['failed'], cmd: key
-            counter! "command_total", value['total'], cmd: key
+            counter! 'command_failed', value['failed'], cmd: key
+            counter! 'command_total', value['total'], cmd: key
           end
         end
       end

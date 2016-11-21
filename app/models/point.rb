@@ -13,7 +13,6 @@ class Point
     @name = name
     @value = value
     @labels = labels
-    @help_text = nil
   end
 
   def to_prom(prefix)
@@ -33,7 +32,7 @@ class Point
   end
 
   def full_name
-    [@prefix, name].compact.join("_")
+    [@prefix, name].compact.join('_')
   end
 
   def full_name_with_labels
@@ -46,16 +45,15 @@ class Point
 
   private
 
-  def with(prefix, extra_labels = {})
+  def with(prefix)
     original_prefix = @prefix
     @prefix = prefix
 
     result = yield
 
     @prefix = original_prefix
-    @extra_labels = nil
 
-    return result
+    result
   end
 
   def help
@@ -73,8 +71,8 @@ class Point
   def full_labels
     return '' if labels.empty?
     text = labels.map do |key, value|
-      %Q/#{key}=#{value.to_s.dump}/
-    end.join(",")
+      %(#{key}=#{value.to_s.dump})
+    end.join(',')
 
     "{#{text}}"
   end

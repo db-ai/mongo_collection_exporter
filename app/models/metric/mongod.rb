@@ -1,4 +1,5 @@
 class Metric
+  # Metrics extacted from db.serverStatus() on `mongod`\`shard` instances
   class Mongod < Metric
     LocksStatsToMetrics = {
       'acquireCount' => 'lock_acquire_count',
@@ -11,7 +12,7 @@ class Metric
       'W' => 'x',
       'r' => 'is',
       'w' => 'ix'
-    }
+    }.freeze
 
     metrics do
       ignore 'host',
@@ -133,7 +134,7 @@ class Metric
 
         inside 'operation' do
           iterate do |key, value|
-            counter! "special_operation", value, type: key
+            counter! 'special_operation', value, type: key
           end
         end
 
@@ -172,11 +173,11 @@ class Metric
         ignore 'repl'
 
         inside 'commands' do
-          counter "<UNKNOWN>", as: "unknown"
+          counter '<UNKNOWN>', as: 'unknown'
 
           iterate do |key, value|
-            counter! "command_failed", value['failed'], cmd: key
-            counter! "command_total", value['total'], cmd: key
+            counter! 'command_failed', value['failed'], cmd: key
+            counter! 'command_total', value['total'], cmd: key
           end
         end
       end

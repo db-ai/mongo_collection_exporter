@@ -22,7 +22,7 @@ class Collector
     end
 
     def stats
-      node.run(selector: { collStats: OPLOG_COLL}, db_name: 'local')
+      node.run(selector: { collStats: OPLOG_COLL }, db_name: 'local')
     end
 
     def to_h
@@ -39,10 +39,10 @@ class Collector
     end
 
     def window
-      fbk = {"ts": BSON::Timestamp.new(0,0)}
+      first_block = { 'ts' => BSON::Timestamp.new(0, 0) }
 
-      first = @coll.find({}, {"sort": {"$natural": 1}}).limit(1).first || fbk
-      last = @coll.find({}, {"sort": {"$natural": -1}}).limit(1).first || first
+      first = ordered_first(1) || first_block
+      last = ordered_first(-1) || first
 
       last['ts'].seconds - first['ts'].seconds
     end
@@ -53,6 +53,10 @@ class Collector
 
     def max_size
       @stats['maxSize']
+    end
+
+    def ordered_first(order)
+      @coll.find({}, 'sort' => { '$natural' => order }).limit(1).first
     end
   end
 end

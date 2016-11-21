@@ -1,2 +1,2 @@
-MongoCollectionExporter::App.controllers  do
+MongoCollectionExporter::App.controllers do
 end

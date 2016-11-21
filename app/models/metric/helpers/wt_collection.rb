@@ -1,3 +1,4 @@
+# WiredTiger rules for collections.
 class WiredTigerCollectionHelper < DSL::Helper
   metrics do
     ignore 'uri', 'type', 'creationString'
@@ -9,9 +10,9 @@ class WiredTigerCollectionHelper < DSL::Helper
 
     inside 'LSM', as: 'lsm' do
       counter 'bloom filter false positives',
-              as: "bloom_filer_false_positives"
+              as: 'bloom_filer_false_positives'
       counter 'bloom filter hits',
-              as: "bloom_filer_hits"
+              as: 'bloom_filer_hits'
       counter 'bloom filter misses',
               as: 'bloom_filter_misses'
 
@@ -31,10 +32,10 @@ class WiredTigerCollectionHelper < DSL::Helper
       counter 'queries that could have benefited from a Bloom filter that did not exist',
               as: 'bloom_filter_query_misses'
 
-      gauge 'sleep for LSM checkpoint throttle', {task: 'checkpoint'},
+      gauge 'sleep for LSM checkpoint throttle', { task: 'checkpoint' },
             as: 'throttle_sleep'
 
-      gauge 'sleep for LSM merge throttle', {task: 'merge'},
+      gauge 'sleep for LSM merge throttle', { task: 'merge' },
             as: 'merge_throttle_sleep'
 
       counter 'total size of bloom filters',
@@ -65,27 +66,27 @@ class WiredTigerCollectionHelper < DSL::Helper
             as: 'file_reusable_bytes'
 
       gauge 'file size in bytes',
-             as: 'file_size_bytes'
+            as: 'file_size_bytes'
     end
 
     inside 'btree' do
       counter 'btree checkpoint generation',
               as: 'checkpoint_gen'
 
-      counter 'column-store fixed-size leaf pages', {type: 'fixed_leaf'},
+      counter 'column-store fixed-size leaf pages', { type: 'fixed_leaf' },
               as: 'column_store_pages'
 
-      counter 'column-store internal pages', {type: 'internal'},
+      counter 'column-store internal pages', { type: 'internal' },
               as: 'column_store_pages'
 
-      counter 'column-store variable-size leaf pages', {type: 'var_leaf'},
+      counter 'column-store variable-size leaf pages', { type: 'var_leaf' },
               as: 'column_store_pages'
 
       counter 'column-store variable-size RLE encoded values',
-              {type: 'var_rle'}, as: 'column_store_values'
+              { type: 'var_rle' }, as: 'column_store_values'
 
       counter 'column-store variable-size deleted values',
-              {type: 'var_deleted'}, as: 'column_store_values'
+              { type: 'var_deleted' }, as: 'column_store_values'
 
       gauge 'fixed-record size',
             as: 'fixed_record_size'
@@ -117,10 +118,10 @@ class WiredTigerCollectionHelper < DSL::Helper
       gauge 'pages rewritten by compaction',
             as: 'rewritten_by_compaction_pages'
 
-      gauge 'row-store internal pages', {type: 'internal'},
+      gauge 'row-store internal pages', { type: 'internal' },
             as: 'row_store_pages'
 
-      gauge 'row-store leaf pages', {type: 'leaf'},
+      gauge 'row-store leaf pages', { type: 'leaf' },
             as: 'row_store_pages'
     end
 
@@ -142,19 +143,19 @@ class WiredTigerCollectionHelper < DSL::Helper
               as: 'selected_but_cant_be_evicted_pages'
 
       counter 'checkpoint blocked page eviction',
-              {cause: 'checkpoint'}, as: 'page_eviction_blocked'
+              { cause: 'checkpoint' }, as: 'page_eviction_blocked'
 
       counter 'hazard pointer blocked page eviction',
-              {cause: 'hazard_ponter'}, as: 'page_eviction_blocked'
+              { cause: 'hazard_ponter' }, as: 'page_eviction_blocked'
 
-      counter 'internal pages split during eviction', {type: 'internal'},
-                      as: 'split_during_eviction_pages'
+      counter 'internal pages split during eviction', { type: 'internal' },
+              as: 'split_during_eviction_pages'
 
-      counter 'leaf pages split during eviction', {type: 'leaf'},
-                      as: 'split_during_eviction_pages'
+      counter 'leaf pages split during eviction', { type: 'leaf' },
+              as: 'split_during_eviction_pages'
 
       gauge 'bytes currently in the cache',
-             as: 'used_bytes'
+            as: 'used_bytes'
 
       counter 'bytes read into cache',
               as: 'read_into_bytes'
@@ -163,7 +164,7 @@ class WiredTigerCollectionHelper < DSL::Helper
               as: 'written_from_bytes'
 
       counter 'pages read into cache',
-               as: 'read_into_pages'
+              as: 'read_into_pages'
 
       counter 'pages requested from the cache',
               as: 'read_from_pages'
@@ -171,13 +172,13 @@ class WiredTigerCollectionHelper < DSL::Helper
       counter 'pages written from cache',
               as: 'written_from_pages'
 
-      counter 'unmodified pages evicted', {type: 'unmodified'},
+      counter 'unmodified pages evicted', { type: 'unmodified' },
               as: 'evicted_pages'
 
-      counter 'modified pages evicted', {type: 'modified'},
+      counter 'modified pages evicted', { type: 'modified' },
               as: 'evicted_pages'
 
-      counter 'internal pages evicted', {type: 'internal'},
+      counter 'internal pages evicted', { type: 'internal' },
               as: 'evicted_pages'
     end
 
@@ -208,22 +209,22 @@ class WiredTigerCollectionHelper < DSL::Helper
               as: 'update_value_bytes'
 
       counter 'restarted searches',
-               as: 'restarted_searches'
+              as: 'restarted_searches'
 
       # Not sure that this is same event as 'insert calls'
-      counter 'bulk-loaded cursor-insert calls', {type: 'bulk_load_insert'},
-               as: 'calls'
+      counter 'bulk-loaded cursor-insert calls', { type: 'bulk_load_insert' },
+              as: 'calls'
 
-      counter 'create calls',      {type: 'create'}, as: 'calls'
-      counter 'insert calls',      {type: 'insert'}, as: 'calls'
-      counter 'next calls',        {type: 'next'}, as: 'calls'
-      counter 'prev calls',        {type: 'prev'}, as: 'calls'
-      counter 'remove calls',      {type: 'remove'}, as: 'calls'
-      counter 'reset calls',       {type: 'reset'}, as: 'calls'
-      counter 'search calls',      {type: 'search'}, as: 'calls'
-      counter 'search near calls', {type: 'search_near'}, as: 'calls'
-      counter 'truncate calls',    {type: 'truncate'}, as: 'calls'
-      counter 'update calls',      {type: 'update'}, as: 'calls'
+      counter 'create calls',      { type: 'create' }, as: 'calls'
+      counter 'insert calls',      { type: 'insert' }, as: 'calls'
+      counter 'next calls',        { type: 'next' }, as: 'calls'
+      counter 'prev calls',        { type: 'prev' }, as: 'calls'
+      counter 'remove calls',      { type: 'remove' }, as: 'calls'
+      counter 'reset calls',       { type: 'reset' }, as: 'calls'
+      counter 'search calls',      { type: 'search' }, as: 'calls'
+      counter 'search near calls', { type: 'search_near' }, as: 'calls'
+      counter 'truncate calls',    { type: 'truncate' }, as: 'calls'
+      counter 'update calls',      { type: 'update' }, as: 'calls'
     end
 
     inside 'reconciliation' do

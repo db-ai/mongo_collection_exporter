@@ -6,7 +6,7 @@
 class Prometheus
   attr_reader :config, :prefix
 
-  METRIC_PREFIX = "mongo".freeze
+  METRIC_PREFIX = 'mongo'.freeze
 
   def initialize(config = Settings.current, prefix = METRIC_PREFIX)
     @config = config
@@ -24,16 +24,14 @@ class Prometheus
   private
 
   def scrape_duration
-    point = Point::Gauge.new("scrape_duration_ms", (@runtime * 1000.0).to_i)
+    point = Point::Gauge.new('scrape_duration_ms', (@runtime * 1000.0).to_i)
 
     [point.to_prom_banner(prefix), point.to_prom(prefix)]
   end
 
   def prepare
     runtime do
-      points_iterator = all_points_by_name.each_with_object([])
-
-      @points = points_iterator do |(name, points), memo|
+      @points = all_by_name.each_with_object([]) do |(_name, points), memo|
         memo
           .concat [points.first.to_prom_banner(prefix)]
           .concat promethize(points)
@@ -51,16 +49,16 @@ class Prometheus
     config.mongo.all.map(&:metrics).flatten
   end
 
-  def all_points_by_name
-    all_points.each_with_object(Hash.new) do |point, memo|
+  def all_by_name
+    all_points.each_with_object({}) do |point, memo|
       full_name = point.full_name
-      points = memo[full_name] ||= Array.new
+      points = memo[full_name] ||= []
       points.push(point)
     end
   end
 
   def promethize(points)
-    points.map {|point| point.to_prom(prefix) }
+    points.map { |point| point.to_prom(prefix) }
   end
 
   def runtime(before = Time.now)

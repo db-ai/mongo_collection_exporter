@@ -98,7 +98,7 @@ class DSL
     # Extraction and transformaton
 
     def extract(key_name, fallback = nil)
-      current_context = context || Hash.new
+      current_context = context || {}
 
       current_context.delete(key_name) do
         not_found(key_name)
@@ -107,13 +107,13 @@ class DSL
     end
 
     def key?(key_name)
-      current_context = context || Hash.new
+      current_context = context || {}
 
       current_context.key? key_name
     end
 
     def value(key_name, fallback = nil)
-      current_context = context || Hash.new
+      current_context = context || {}
 
       current_context[key_name] || fallback
     end
@@ -144,6 +144,7 @@ class DSL
     end
 
     private
+
     def metric_name(key_name)
       key_name
     end
