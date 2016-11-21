@@ -1,6 +1,8 @@
 module MongoCollectionExporter
   class App < Padrino::Application
-    enable  :reload
+    Mongo::Logger.logger.level = Logger::INFO
+
+    disable :reload
 
     register Padrino::Helpers
 
