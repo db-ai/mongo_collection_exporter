@@ -5,6 +5,13 @@
 class Metric
   class ReplicaSet < Metric
     metrics do
+      # This are comming from Collector::ReplicaSet
+
+      gauge 'oplog_used_bytes'
+      gauge 'oplog_max_bytes'
+      gauge 'oplog_window_seconds'
+      gauge 'oplog_count'
+
       ignore 'set', 'date', 'ok', '$gleStats'
 
       gauge 'heartbeatIntervalMillis', as: 'rs_heartbit_interval_ms'
@@ -15,7 +22,7 @@ class Metric
         gauge! 'rs_syncing', 1, {to: extract('syncingTo')}
       end
 
-      members = extract('members', [])
+      members = value('members', [])
       primary = members.find {|member| member['state'] == 1}
       me = members.find {|member| member['self']}
       others = members - [me]
@@ -30,7 +37,7 @@ class Metric
           current_oplog = members.map {|member| member['optimeDate']}.max
         end
 
-        lag = current_oplog - me['optimeDate']
+        lag = me['optimeDate'] - current_oplog
         gauge! 'rs_lag_seconds', lag
 
         others.each do |member|

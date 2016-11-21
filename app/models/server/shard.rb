@@ -19,7 +19,9 @@ class Server
     def replica_set_metrics
       return [] unless replica?
 
-      [Metric::ReplicaSet.new(raw_rs_metrics, labels)]
+      rs_metrics = Collector::ReplicaSet.new(self).to_h.merge! raw_rs_metrics
+
+      [Metric::ReplicaSet.new(rs_metrics, labels)]
     end
 
     def raw_server_metrics
