@@ -1,4 +1,9 @@
 class DSL
+  # Despite the fact it called Context, it's something like namespace, that
+  # can be nested, and names can be inherited.
+  #
+  # This class is used by `inside` DSL method to keep the nesting of the
+  # names.
   class Context
     attr_reader :scope, :name, :nickname, :parent
 

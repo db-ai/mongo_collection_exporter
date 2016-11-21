@@ -1,6 +1,7 @@
 require_relative '../metric/mongos'
 
 class Server
+  # Implements Shard Router node role
   class Mongos < Server
     def fetch_metrics
       [Metric::Mongos.new(raw_metrics, labels)]

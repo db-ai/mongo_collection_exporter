@@ -1,3 +1,8 @@
+# This class aggregates all metrics from all nodes and presents them in the
+# Prometheus Text format (>0.0.4)
+#
+# Additionaly it provides `scrape_duration_ms` metric, that just tells how
+# long it took to read all metrics.
 class Prometheus
   attr_reader :config
 

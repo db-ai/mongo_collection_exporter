@@ -1,3 +1,8 @@
+# Implements base class for diffirent node roles in the mongo cluster. Currently
+# only Mongos, Config and Shard roles are implemented.
+#
+# TODO: Labeling stuff should be moved somewhere else, as it not server
+# specific.
 class Server
   attr_reader :address
   attr_reader :client

@@ -1,4 +1,5 @@
 class Server
+  # Implements Shard (mongod) node role.
   class Shard < Server
     def replica_name
       server.replica_set_name

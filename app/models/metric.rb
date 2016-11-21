@@ -1,3 +1,5 @@
+# Container for metric parsing DSL. It is used to hold `metrics` body and to
+# provide basic API to read parsed data.
 class Metric
   class << self
     attr_reader :proxy

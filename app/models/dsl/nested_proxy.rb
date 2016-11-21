@@ -1,4 +1,6 @@
 class DSL
+  # This class overrides some parts of DSL::Proxy to make proxies nestable, so
+  # we can implement things like `inside` and `namespace`.
   class NestedProxy < DSL::Proxy
     attr_reader :parent_context
 

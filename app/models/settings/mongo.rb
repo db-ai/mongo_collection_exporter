@@ -1,4 +1,6 @@
 class Settings
+  # Uses Settings::File to make a list of Server instances to collect metrics
+  # from.
   class Mongo
     attr_reader :raw
 

@@ -1,3 +1,6 @@
+# Abstract Metric data Point. Represents the metric value of Counter or Gauge
+# types. It can hold 1 value attached to a name with some labels. Take a look
+# at Prometheus metrics to make sense of the difference between name and label.
 class Point
   attr_reader :name, :value, :labels
   attr_reader :help_text

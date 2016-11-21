@@ -1,4 +1,6 @@
 class DSL
+  # Here goes the DSL logic. This class is the context where `metrics` block is
+  # evaluated, so keep an eye on the methods.
   class Proxy
     attr_reader :all, :keys_not_found, :keys_left, :value_missing
     attr_reader :rules, :context, :labels
