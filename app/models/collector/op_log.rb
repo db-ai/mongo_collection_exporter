@@ -1,16 +1,24 @@
 class Collector
-  class ReplicaSet
+  # Collects informaton about Operation Log collection in the `local` database.
+  class OpLog
     OPLOG_COLL = 'oplog.rs'.freeze
 
-    attr_reader :node, :server, :client, :db, :rs
+    attr_reader :node, :db, :rs
     def initialize(node)
       @node = node
-      @server = node.server
-      @client = node.client
 
       @db = client.use(:local).database
       @coll = @db[OPLOG_COLL]
       @stats = stats
+    end
+
+    # TODO: Use delegators instead
+    def server
+      node.server
+    end
+
+    def client
+      node.client
     end
 
     def stats

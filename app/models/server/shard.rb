@@ -19,16 +19,16 @@ class Server
     def replica_set_metrics
       return [] unless replica?
 
-      rs_metrics = Collector::ReplicaSet.new(self).to_h.merge! raw_rs_metrics
+      oplog_metrics = Collector::OpLog.new(self).to_h.merge! raw_oplog_metrics
 
-      [Metric::ReplicaSet.new(rs_metrics, labels)]
+      [Metric::ReplicaSet.new(oplog_metrics, labels)]
     end
 
     def raw_server_metrics
       run(selector: { serverStatus: 1 }, db_name: 'admin')
     end
 
-    def raw_rs_metrics
+    def raw_oplog_metrics
       run(selector: { replSetGetStatus: 1 }, db_name: 'admin')
     end
 
