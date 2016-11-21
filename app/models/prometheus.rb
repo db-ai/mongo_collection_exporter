@@ -34,8 +34,7 @@ class Prometheus
   def prepare
     runtime do
       @points = all_by_name.each_with_object([]) do |(_name, points), memo|
-        memo
-          .concat [points.first.to_prom_banner(prefix)]
+        memo.concat [points.first.to_prom_banner(prefix)]
           .concat promethize(points)
       end
     end
