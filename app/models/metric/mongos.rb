@@ -1,6 +1,6 @@
 class Metric
   # Metrics extacted from db.serverStatus() on `mongos` nodes
-  class Mongos < Metric
+  class Mongos < Exporter::Metric
     metrics do
       ignore 'host', 'advisoryHostFQDNs', 'version', 'process', 'pid',
              'uptimeMillis', 'uptimeEstimate', 'localTime',

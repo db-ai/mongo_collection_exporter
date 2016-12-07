@@ -10,7 +10,7 @@ class Prometheus
 
   METRIC_PREFIX = 'mongo'.freeze
 
-  def initialize(config = Settings.current, prefix = METRIC_PREFIX)
+  def initialize(config = Exporter::Settings.current, prefix = METRIC_PREFIX)
     @config = config
     @points = []
     @prefix = prefix

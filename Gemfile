@@ -1,33 +1,13 @@
 source 'https://rubygems.org'
 
-# Padrino supports Ruby version 1.9 and later
-# ruby '2.3.1'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
-# Distribute your app as a gem
-# gemspec
+# Mongo Driver
+gem 'mongo', '~> 2.4'
 
-# Server requirements
-# gem 'thin' # or mongrel
-# gem 'trinidad', :platform => 'jruby'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Optional JSON codec (faster performance)
-# gem 'oj'
+gem 'torquebox', '3.2.0'
 
-# Project requirements
-gem 'rake'
-
-# Component requirements
-
-# Test requirements
-
-# Padrino Stable Gem
-gem 'padrino', '0.13.3.3'
-gem 'mongo', '~> 2.3'
-
-# Or Padrino Edge
-# gem 'padrino', :github => 'padrino/padrino-framework'
-
-# Or Individual Gems
-# %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.13.3.3'
-# end

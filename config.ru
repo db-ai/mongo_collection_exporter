@@ -1,9 +1,5 @@
-#!/usr/bin/env rackup
-# encoding: utf-8
+# This file is used by Rack-based servers to start the application.
 
-# This file can be used to start Padrino,
-# just execute it from the command line.
+require_relative 'config/environment'
 
-require File.expand_path('../config/boot.rb', __FILE__)
-
-run Padrino.application
+run Rails.application
