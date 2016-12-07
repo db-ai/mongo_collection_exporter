@@ -21,7 +21,7 @@ module Exporter
     end
 
     def mongo
-      @mongo ||= ::Settings::Mongodb.new(raw['mongo'])
+      @mongo ||= ::Exporter::Settings::Mongodb.new(raw['mongo'])
     end
 
     def inspect

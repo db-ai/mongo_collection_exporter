@@ -2,14 +2,6 @@
 # provide basic API to read parsed data.
 module Exporter
   class Metric
-    class << self
-      attr_reader :proxy
-
-      def metrics(&blk)
-        @proxy = blk
-      end
-    end
-
     attr_reader :raw
 
     def initialize(raw, labels = {})

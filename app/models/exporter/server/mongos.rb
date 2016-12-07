@@ -1,14 +1,14 @@
-require_relative '../metric/mongos'
+module Exporter
+  class Server
+    # Implements Shard Router node role
+    class Mongos < Exporter::Server
+      def fetch_metrics
+        [::Metric::Mongos.new(raw_metrics, labels)]
+      end
 
-class Server
-  # Implements Shard Router node role
-  class Mongos < Server
-    def fetch_metrics
-      [Metric::Mongos.new(raw_metrics, labels)]
-    end
-
-    def raw_metrics
-      run(selector: { serverStatus: 1 }, db_name: 'admin')
+      def raw_metrics
+        run(selector: { serverStatus: 1 }, db_name: 'admin')
+      end
     end
   end
 end

@@ -9,6 +9,7 @@ class Prometheus
   attr_reader :config, :prefix
 
   METRIC_PREFIX = 'mongo'.freeze
+  GAUGE = Exporter::Point::Gauge
 
   def initialize(config = Exporter::Settings.current, prefix = METRIC_PREFIX)
     @config = config
@@ -26,7 +27,7 @@ class Prometheus
   private
 
   def scrape_duration
-    point = Point::Gauge.new('scrape_duration_ms', (@runtime * 1000.0).to_i)
+    point = GAUGE.new('scrape_duration_ms', (@runtime * 1000.0).to_i)
 
     [point.to_prom_banner(prefix), point.to_prom(prefix)]
   end
