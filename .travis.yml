@@ -1,0 +1,21 @@
+sudo: false
+
+language: ruby
+rvm:
+  - jruby-9.1.6.0
+
+script:
+  - 'mkdir pkg'
+  - 'torquebox jar --envvar RAILS_ENV=production SECRET_KEY_BASE=api'
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file: mongo_collection_exporter.jar
+  file_glob: true
+  on:
+    repo: y8/mongo_collection_exporter
+    tags: true
+  api_key:
+    secure: dz0C08/FnnCjRn6fcx5jcsIQU/Ozot0aCKvMPSjGupDTUocWJLjudRmn7j6Yn+TlJ5IyGbrUQH65Cmpe9rtiohI5rZVrwexoSwBLUMpFrpG8b8Ywmsl+nqosRfYtRDEgSR5ud+SVjNrB2X21yZ+ZBs4sheHoCcYk7Rlw6GfaCQhXEcod8F9x83FAjdpHGkHWvBMIB6I9+rJWAAIwT4oJ/zGM9qvqCrCkJIh0uvJAj+MfDd3s/Mzhot2pyreZqlIhGbp2W7RIUrENDvWpoTpZlwzYtYc+ei8PGrhwbYNqx3ZIJBfdO5M9lcKS8/y3eNgJ1tmtwg2IcAlwDDwRdeEt0QSo/fcaBPw5BSBVRr2piNbe05XHVnzX9rPE888dWkM3Hm4RXgCj8Wiu07jhov9g+QgE9fg5LKFvdnyq6b7Xvujvl1dtnLiwMycTgdyVRZfpQdcnkXZfkW0JFx4ssJ3kbR+BXDiRXkX1DhZs3BPg/YHpDtXnHnck/PmXAdRoOZw86JUjr44iuhjqS4UyFoBcJaz3uihQmml9I6EA734rYnQIVaGqz+w4MvuFscPzMtN5UyDLvqmm5dWJC6JkhAhB94U0DhYNouZerZ1mz+IOeTzZqmEv17RmZ3WXWGk73SjXjfpRHTdD2eblBczO5Z+LF9Q9hl5V3KX2N2Q1TUXEJS4=
+
