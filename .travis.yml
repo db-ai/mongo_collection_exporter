@@ -12,7 +12,7 @@ install: bundle install --jobs=1 --retry=3 --deployment
 
 script:
   - 'mkdir pkg'
-  - 'torquebox jar --envvar RAILS_ENV=production SECRET_KEY_BASE=api'
+  - 'bundle exec torquebox jar --envvar RAILS_ENV=production SECRET_KEY_BASE=api'
 
 deploy:
   provider: releases
