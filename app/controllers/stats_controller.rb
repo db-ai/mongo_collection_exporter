@@ -4,6 +4,6 @@ class StatsController < ApplicationController
   end
 
   def metrics
-    render plain: Prometheus.new
+    render plain: Prometheus.new.to_s
   end
 end
