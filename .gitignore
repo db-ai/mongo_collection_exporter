@@ -1,6 +1,7 @@
 .DS_Store
 log/**/*
 tmp/**/*
+vendor/mongo/data/*
 vendor/prometheus/data/*
 vendor/gems/*
 !vendor/gems/cache/
