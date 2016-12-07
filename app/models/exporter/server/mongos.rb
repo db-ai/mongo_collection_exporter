@@ -3,7 +3,7 @@ module Exporter
     # Implements Shard Router node role
     class Mongos < Exporter::Server
       def fetch_metrics
-        [::Metric::Mongos.new(raw_metrics, labels)]
+        [Exporter::Source::Mongos.new(raw_metrics, labels)]
       end
 
       def raw_metrics

@@ -1,5 +1,5 @@
 module Exporter
-  class DSL
+  module DSL
     # This class overrides some parts of DSL::Proxy to make proxies nestable, so
     # we can implement things like `inside` and `namespace`.
     class NestedProxy < DSL::Proxy

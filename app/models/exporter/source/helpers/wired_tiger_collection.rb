@@ -1,5 +1,5 @@
 # WiredTiger rules for collections.
-class WiredTigerCollectionHelper < DSL::Helper
+class Exporter::Source::Helpers::WiredTigerCollection < Exporter::DSL::Helper
   metrics do
     ignore 'uri', 'type', 'creationString'
 

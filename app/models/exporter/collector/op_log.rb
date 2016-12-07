@@ -1,5 +1,5 @@
 module Exporter
-  class Collector
+  module Collector
     # Collects informaton about Operation Log collection in the `local`
     # database.
     class OpLog

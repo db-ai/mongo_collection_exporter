@@ -1,5 +1,5 @@
 module Exporter
-  class DSL
+  module DSL
     # Tiny class that used by `use` DSL method to implement reusable parts of
     # DSL logic.
     class Helper

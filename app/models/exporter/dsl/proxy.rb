@@ -1,5 +1,5 @@
 module Exporter
-  class DSL
+  module DSL
     # Here goes the DSL logic. This class is the context where `metrics` block
     # is evaluated, so keep an eye on the methods.
     class Proxy
@@ -85,15 +85,15 @@ module Exporter
 
       def inside(key_name, as: nil, &block)
         scope = extract(key_name)
-        nested_context = ::DSL::Context.new(key_name, as, self)
+        nested_context = DSL::Context.new(key_name, as, self)
 
-        ::DSL::NestedProxy.new(scope, labels, nested_context, &block)
+        DSL::NestedProxy.new(scope, labels, nested_context, &block)
       end
 
       def namespace(key_name, &block)
-        nested_context = ::DSL::Context.new(key_name, nil, self)
+        nested_context = DSL::Context.new(key_name, nil, self)
 
-        ::DSL::NestedProxy.new(context, labels, nested_context, &block)
+        DSL::NestedProxy.new(context, labels, nested_context, &block)
       end
 
       # Extraction and transformaton

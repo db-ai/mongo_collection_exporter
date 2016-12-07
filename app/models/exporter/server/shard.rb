@@ -15,7 +15,7 @@ module Exporter
       end
 
       def server_metrics
-        [Metric::Mongod.new(raw_server_metrics, labels)]
+        [Source::Mongod.new(raw_server_metrics, labels)]
       end
 
       def replica_set_metrics
@@ -23,7 +23,7 @@ module Exporter
 
         oplog_metrics = Collector::OpLog.new(self).to_h.merge! raw_oplog_metrics
 
-        [Metric::ReplicaSet.new(oplog_metrics, labels)]
+        [Source::ReplicaSet.new(oplog_metrics, labels)]
       end
 
       def raw_server_metrics
@@ -65,13 +65,13 @@ module Exporter
       def collection_metric(database, name, raw_data)
         collection_labels = labels.merge db: database, coll: name
 
-        Metric::Collection.new(raw_data, collection_labels)
+        Source::Collection.new(raw_data, collection_labels)
       end
 
       def index_metric(database, name, index_name, index_raw_data)
         index_labels = labels.merge db: database, coll: name, idx: index_name
 
-        Metric::Index.new(index_raw_data, index_labels)
+        Source::Index.new(index_raw_data, index_labels)
       end
 
       def extra_labels

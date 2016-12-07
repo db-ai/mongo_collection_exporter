@@ -1,5 +1,5 @@
 module Exporter
-  class DSL
+  module DSL
     # Despite the fact it called Context, it's something like namespace, that
     # can be nested, and names can be inherited.
     #

@@ -1,6 +1,6 @@
 # Thats a huge one. We are begin very specific on this metrics, to
 # spot the diffirence between server-level and collection level metrics.
-class WiredTigerDatabaseHelper < DSL::Helper
+class Exporter::Source::Helpers::WiredTigerDatabase < ::Exporter::DSL::Helper
   metrics do
     ignore 'uri'
 
