@@ -101,6 +101,8 @@ GEM
       torquebox-core (= 4.0.0.beta3)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2016.10)
+      tzinfo (>= 1.0.0)
     websocket-driver (0.6.4-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -112,6 +114,7 @@ DEPENDENCIES
   mongo (~> 2.4)
   rails (~> 5.0.0, >= 5.0.0.1)
   torquebox-web (= 4.0.0.beta3)
+  tzinfo-data
 
 BUNDLED WITH
    1.13.6
