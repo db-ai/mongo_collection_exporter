@@ -11,7 +11,7 @@ jdk:
 install: bundle install --jobs=1 --retry=3
 
 script:
-  - 'bundle exec torquebox jar --envvar RAILS_ENV=production SECRET_KEY_BASE=api'
+  - 'bundle exec torquebox jar --envvar RAILS_ENV=production'
 
 deploy:
   provider: releases
