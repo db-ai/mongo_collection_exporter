@@ -36,7 +36,7 @@ module Exporter
       end
 
       def paths
-        [@override_path, ENV[ENV_KEY_NAME], DEFAULT_PATH].compact
+        [ENV[ENV_KEY_NAME], @override_path].compact
       end
 
       def not_found
