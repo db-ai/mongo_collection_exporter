@@ -2,7 +2,6 @@ module Exporter
   class Source
     # Metrics extacted from db.serverStatus() on `mongos` nodes
     class Mongos < ::Exporter::Source
-      Rails.logger.info ancestors
       metrics do
         ignore 'host', 'advisoryHostFQDNs', 'version', 'process', 'pid',
                'uptimeMillis', 'uptimeEstimate', 'localTime',
