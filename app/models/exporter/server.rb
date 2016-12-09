@@ -25,7 +25,7 @@ module Exporter
 
     def default_labels
       {
-        node: address,
+        instance: address,
         role: self.class.name.split('::').last.downcase
       }
     end
