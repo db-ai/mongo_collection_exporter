@@ -3,7 +3,7 @@ version: 1
 # To give it a try get `mtools` (https://github.com/rueckstiess/mtools) and
 # then launch your small cluster:
 #
-# mlaunch init --replicaset --sharded hot warm cold --config 3 --mongos 3 --port 27170 --hostname localhost
+# mlaunch init --replicaset --sharded hot warm cold --config 3 --mongos 3 --port 27170 --hostname localhost --auth --csrs
 #
 # Note: you must specify the nodes in the configuration using the hostnames,
 # not the IP address, becuse mongo uses hostnames in nodes names.
@@ -14,27 +14,27 @@ mongo:
 
   # List of mongos instanes to connect
   mongos:
-    - mongodb://localhost:27170
-    - mongodb://localhost:27171
-    - mongodb://localhost:27172
+    - mongodb://user:password@localhost:27170
+    - mongodb://user:password@localhost:27171
+    - mongodb://user:password@localhost:27172
 
   # Shard topology
   shards:
-    - mongodb://localhost:27173
-    - mongodb://localhost:27174
-    - mongodb://localhost:27175
-    - mongodb://localhost:27176
-    - mongodb://localhost:27177
-    - mongodb://localhost:27178
-    - mongodb://localhost:27179
-    - mongodb://localhost:27180
-    - mongodb://localhost:27181
+    - mongodb://user:password@localhost:27173
+    - mongodb://user:password@localhost:27174
+    - mongodb://user:password@localhost:27175
+    - mongodb://user:password@localhost:27176
+    - mongodb://user:password@localhost:27177
+    - mongodb://user:password@localhost:27178
+    - mongodb://user:password@localhost:27179
+    - mongodb://user:password@localhost:27180
+    - mongodb://user:password@localhost:27181
 
   # List of config servers
   configs:
-    - mongodb://localhost:27182
-    - mongodb://localhost:27183
-    - mongodb://localhost:27184
+    - mongodb://user:password@localhost:27182
+    - mongodb://user:password@localhost:27183
+    - mongodb://user:password@localhost:27184
 
 # Namespaces to export.
 #
