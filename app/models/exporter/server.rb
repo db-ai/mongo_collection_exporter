@@ -59,6 +59,9 @@ module Exporter
       return [] unless alive?
 
       fetch_metrics
+    rescue Mongo::Auth::Unauthorized => auth_error
+      Rails.logger.warn "Failed to authenticate on #{@address}: #{auth_error}"
+      return []
     end
 
     def features
