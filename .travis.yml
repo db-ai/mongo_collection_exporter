@@ -2,13 +2,10 @@ sudo: false
 
 language: ruby
 rvm:
-  - jruby-9.1.6.0
+  - jruby-9.1.7.0
 
 jdk:
   - oraclejdk7
-
-# Workaround: https://github.com/bundler/bundler/issues/5202
-install: bundle install --jobs=1 --retry=3
 
 script:
   - 'bundle exec torquebox jar --envvar RAILS_ENV=production'
