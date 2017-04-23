@@ -14,27 +14,27 @@ mongo:
 
   # List of mongos instanes to connect
   mongos:
-    - localhost:27170
-    - localhost:27171
-    - localhost:27172
+    - mongodb://localhost:27170
+    - mongodb://localhost:27171
+    - mongodb://localhost:27172
 
   # Shard topology
   shards:
-    - localhost:27173
-    - localhost:27174
-    - localhost:27175
-    - localhost:27176
-    - localhost:27177
-    - localhost:27178
-    - localhost:27179
-    - localhost:27180
-    - localhost:27181
+    - mongodb://localhost:27173
+    - mongodb://localhost:27174
+    - mongodb://localhost:27175
+    - mongodb://localhost:27176
+    - mongodb://localhost:27177
+    - mongodb://localhost:27178
+    - mongodb://localhost:27179
+    - mongodb://localhost:27180
+    - mongodb://localhost:27181
 
   # List of config servers
   configs:
-    - localhost:27182
-    - localhost:27183
-    - localhost:27184
+    - mongodb://localhost:27182
+    - mongodb://localhost:27183
+    - mongodb://localhost:27184
 
 # Namespaces to export.
 #
