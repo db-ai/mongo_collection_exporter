@@ -1,0 +1,6 @@
+Dockerfile
+vendor/*
+tmp/*
+spec/*
+src/*
+logs/*
