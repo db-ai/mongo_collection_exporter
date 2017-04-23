@@ -2,10 +2,10 @@ sudo: false
 
 language: ruby
 rvm:
-  - jruby-9.1.7.0
+  - jruby-9.1.8.0
 
 jdk:
-  - oraclejdk7
+  - oraclejdk8
 
 script:
   - 'bundle exec torquebox jar --envvar RAILS_ENV=production'
