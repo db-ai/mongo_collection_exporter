@@ -2,18 +2,19 @@ sudo: false
 
 language: ruby
 rvm:
-  - jruby-9.1.8.0
+  - jruby-9.1.12.0
 
 jdk:
   - oraclejdk8
 
 script:
-  - 'bundle exec torquebox jar --envvar RAILS_ENV=production'
+  - 'gem install warble'
+  - 'warble'
 
 deploy:
   provider: releases
   skip_cleanup: true
-  file: mongo_collection_exporter.jar
+  file: mongo_collection_exporter.war
   file_glob: true
   on:
     repo: y8/mongo_collection_exporter

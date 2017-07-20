@@ -8,4 +8,4 @@ EXPOSE 8080
 
 ENV RAILS_ENV=production
 
-CMD /usr/local/bundle/bin/torquebox run -b 0.0.0.0
+CMD bundle exec rails server -b 0.0.0.0

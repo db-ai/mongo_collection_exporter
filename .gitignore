@@ -8,3 +8,5 @@ vendor/gems/*
 .sass-cache/*
 db/*.db
 .*.sw*
+*.jar
+*.war

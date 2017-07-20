@@ -36,5 +36,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.logger = TorqueBox::Logger.new
+  config.logger = Logger.new($stdout)
 end
