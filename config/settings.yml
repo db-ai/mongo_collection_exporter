@@ -3,7 +3,8 @@ version: 1
 # To give it a try get `mtools` (https://github.com/rueckstiess/mtools) and
 # then launch your small cluster:
 #
-# mlaunch init --replicaset --sharded hot warm cold --config 3 --mongos 3 --port 27170 --hostname localhost --auth --csrs
+# mlaunch init --replicaset --sharded hot warm cold --config 3 --mongos 3 \
+#              --port 27170 --hostname localhost --auth --csrs
 #
 # Note: you must specify the nodes in the configuration using the hostnames,
 # not the IP address, becuse mongo uses hostnames in nodes names.
@@ -11,6 +12,12 @@ version: 1
 mongo:
   # Only `sharded` is currently supported
   mode: sharded
+
+  # SSL Configuration, optional
+  # ssl:
+  #   ssl_verify: true
+  #   ssl_cert: /path/to/cert.pem
+  #   ssl_ca_cert: /path/to/ca.pem
 
   # List of mongos instanes to connect
   mongos:

@@ -8,11 +8,9 @@ module Exporter
     attr_reader :address
     attr_reader :client
 
-    def initialize(address)
+    def initialize(address, opts = {})
       @address = backward_compatible(address)
-      @client = Mongo::Client.new @address,
-                                  connect: connect_type,
-                                  database: default_database
+      @client = Mongo::Client.new @address, client_options(opts)
     end
 
     def connect_type
@@ -97,6 +95,13 @@ module Exporter
     end
 
     private
+
+    def client_options(extras = {})
+      {
+        connect: connect_type,
+        database: default_database
+      }.merge extras
+    end
 
     def backward_compatible(address)
       return address if address.starts_with? 'mongodb://'
