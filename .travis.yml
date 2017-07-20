@@ -8,6 +8,7 @@ jdk:
   - oraclejdk8
 
 script:
+  - 'gem install rake -v 12.0.0'
   - 'gem install warbler'
   - 'warble'
 
