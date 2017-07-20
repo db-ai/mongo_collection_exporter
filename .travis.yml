@@ -8,7 +8,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - 'gem install warble'
+  - 'gem install warbler'
   - 'warble'
 
 deploy:
