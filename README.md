@@ -1,6 +1,6 @@
 # Mongo Collection Exporter
 
-[![Build Status](https://travis-ci.org/y8/mongo_collection_exporter.svg?branch=master)](https://travis-ci.org/y8/mongo_collection_exporter) [![](https://images.microbadger.com/badges/image/yopp/mongo_collection_exporter.svg)](https://microbadger.com/images/yopp/mongo_collection_exporter "Get your own image badge on microbadger.com")
+[![Build Status](https://travis-ci.org/y8/mongo_collection_exporter.svg?branch=master)](https://travis-ci.org/y8/mongo_collection_exporter) [![](https://images.microbadger.com/badges/image/yopp/mongo_collection_exporter.svg)](https://hub.docker.com/r/yopp/mongo_collection_exporter)
 
 Exports all metrics from MongoDB collections (including indexes) to Prometheus
 for in-depth analysis and monitoring.
